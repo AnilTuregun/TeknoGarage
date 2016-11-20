@@ -1,6 +1,7 @@
 package com.musu.account.web;
 
 import com.musu.account.model.User;
+import com.musu.account.model.UsersEntity;
 import com.musu.account.service.SecurityService;
 import com.musu.account.service.UserService;
 import com.musu.account.validator.UserValidator;
@@ -23,19 +24,19 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
-        return "registration";
+        return "signUp";
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "signUp";
         }
 
         userService.save(userForm);
@@ -44,6 +45,7 @@ public class UserController {
 
         return "redirect:/welcome";
     }
+
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
