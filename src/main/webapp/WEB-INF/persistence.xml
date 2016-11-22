@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="jcg-JPA">
+
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.musu.model.OptiongroupsEntity</class>
+        <class>com.musu.model.OptionsEntity</class>
+        <class>com.musu.model.OrderdetailsEntity</class>
+        <class>com.musu.model.OrdersEntity</class>
+        <class>com.musu.model.ProductcategoriesEntity</class>
+        <class>com.musu.model.ProductoptionsEntity</class>
+        <class>com.musu.model.ProductsEntity</class>
+        <class>com.musu.model.UsersEntity</class>
+
+        <properties>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+
+            <property name="hibernate.connection.username"/>
+
+            <property name="hibernate.connection.password"/>
+
+            <property name="hibernate.connection.url" value="jdbc:mysql://ecommercedb.c8blfzyn9vqu.eu-central-1.rds.amazonaws.com:3306/mydatabase" />
+
+        </properties>
+
+        </persistence-unit >
+
+        </persistence>
