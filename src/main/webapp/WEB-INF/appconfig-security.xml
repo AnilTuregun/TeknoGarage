@@ -11,7 +11,7 @@
         <intercept-url pattern="/" access="permitAll"/>
         <intercept-url pattern="/welcome" access="permitAll"/>
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
-        <logout logout-success-url="/login?logout" />
+        <logout logout-success-url="/loggedout" />
     </http>
 
     <authentication-manager alias="authenticationManager">

@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -30,10 +30,25 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="${contextPath}/signUp">Kay?t Ol</a>
+
+                    <sec:authorize access="!isAuthenticated()">
+                        <a href="${contextPath}/signUp">Sign up</a>
+                    </sec:authorize>
+
+                    <sec:authorize access="isAuthenticated()">
+                     <div>SUKRU OZTURK</div>
+                    </sec:authorize>
                 </li>
                 <li>
-                    <a href="${contextPath}/login">Giri? Yap</a>
+                    <sec:authorize access="!isAuthenticated()">
+                        <a class="login" href="<c:url value='/login'/>">Log in</a>
+                    </sec:authorize>
+
+                    <sec:authorize access="isAuthenticated()">
+                        <a class="login" href="<c:url value='/loggedout'/>">Log out</a>
+                    </sec:authorize>
+
+
                 </li>
                 <li>
                     <ul class="nav navbar-nav navbar-right">

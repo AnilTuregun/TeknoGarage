@@ -1,6 +1,7 @@
 package com.musu.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by User on 19.11.2016.
@@ -10,7 +11,7 @@ import javax.persistence.*;
 public class ProductcategoriesEntity {
     private int categoryId;
     private String categoryName;
-
+    private Set<ProductsEntity> products;
     @Id
     @Column(name = "CategoryID")
     public int getCategoryId() {
@@ -29,6 +30,14 @@ public class ProductcategoriesEntity {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+    @OneToMany(mappedBy = "productcategoriesByProductCategoryId", cascade = CascadeType.ALL)
+    public Set<ProductsEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<ProductsEntity> products) {
+        this.products = products;
     }
 
     @Override
