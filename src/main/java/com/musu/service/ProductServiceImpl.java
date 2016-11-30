@@ -34,4 +34,14 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductsEntity> findByCateogoryId(int id) {
         return productsRepository.findByProductsByProductCategoryId(id);
     }
+
+    @Override
+    public List<ProductsEntity> findByCateogoryName(String name) {
+        return productsRepository.findByCateogoryName(name);
+    }
+
+    @Override
+    public ProductsEntity findByName(String name) {
+        return  productsRepository.findByName(name);
+    }
 }

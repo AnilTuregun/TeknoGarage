@@ -10,4 +10,6 @@ public interface ProductService {
 
     List<ProductsEntity> findAll();
     List<ProductsEntity> findByCateogoryId(int id);
+    List<ProductsEntity> findByCateogoryName(String name);
+    ProductsEntity findByName(String name);
 }

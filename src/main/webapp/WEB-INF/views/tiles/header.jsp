@@ -18,11 +18,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a href="/home">
+            <img src="/resources/image/logo.png" alt="" />
+                </a>
         </div>
 
         <div class="search-box">
-            <input type="text" class="search-query form-control" placeholder="Search" />
+            <input type="text" class="  search-query form-control" placeholder="Search" />
 
         </div>
 
@@ -36,7 +38,7 @@
                     </sec:authorize>
 
                     <sec:authorize access="isAuthenticated()">
-                     <div>SUKRU OZTURK</div>
+                        <div class="login" >Welcome ${pageContext.request.userPrincipal.name}</div>
                     </sec:authorize>
                 </li>
                 <li>
@@ -120,6 +122,7 @@
             </li>
             </ul>
         </div>
+
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->

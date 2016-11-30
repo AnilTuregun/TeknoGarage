@@ -9,4 +9,5 @@ public interface CategoryService {
 
 
     List<ProductcategoriesEntity> findAll();
+    ProductcategoriesEntity findCategoryByName(String name);
 }

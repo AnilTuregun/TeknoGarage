@@ -9,8 +9,17 @@
 	<put-attribute name="title" value="Offers Homepage"></put-attribute>
 	<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp"></put-attribute>
 	<put-attribute name="content" value="/WEB-INF/views/tiles/content.jsp"></put-attribute>
+	<put-attribute name="left_content" value="/WEB-INF/views/tiles/left_content.jsp"></put-attribute>
 	<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"></put-attribute>
 </definition>
+	<definition name="musu.default2" template="/WEB-INF/views/templates/default2.jsp">
+		<put-attribute name="includes" value=""></put-attribute>
+		<put-attribute name="title" value="Offers Homepage"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/tiles/content.jsp"></put-attribute>
+		<put-attribute name="left_content" value="/WEB-INF/views/tiles/left_content.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"></put-attribute>
+	</definition>
 	<definition name="musu.base" template="/WEB-INF/views/templates/base.jsp">
 		<put-attribute name="includes" value=""></put-attribute>
 		<put-attribute name="title" value="Offers Homepage"></put-attribute>
@@ -33,12 +42,21 @@
 	<definition name="home" extends="musu.default">
 		<put-attribute name="title" value="Login Deneme"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/tiles/home.jsp"></put-attribute>
+		<put-attribute name="left_content" value="/WEB-INF/views/tiles/category.jsp"></put-attribute>
 	</definition>
 	<definition name="loggedout" extends="musu.default">
 		<put-attribute name="title" value="Login Deneme"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/tiles/loggedout.jsp"></put-attribute>
 	</definition>
-
+	<definition name="productDetails" extends="musu.default2">
+		<put-attribute name="title" value="Login Deneme"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/tiles/productDetails.jsp"></put-attribute>
+	</definition>
+	<definition name="categories" extends="musu.default">
+		<put-attribute name="title" value="Login Deneme"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/tiles/categories.jsp"></put-attribute>
+		<put-attribute name="left_content" value="/WEB-INF/views/tiles/category.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
 
 

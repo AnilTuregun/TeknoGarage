@@ -42,23 +42,17 @@
 
 </head>
 <body>
-<div class="container">
-<div class="row">
+
 <div class="header">
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
 </div>
-<div class="col-md-3">
-	<tiles:insertAttribute name="left_content"></tiles:insertAttribute>
-</div>
 
-<div class="col-md-9">
-	<tiles:insertAttribute name="content"></tiles:insertAttribute>
+<div class="content">
+<tiles:insertAttribute name="content"></tiles:insertAttribute>
 </div>
 
 <hr/>
-</div>
-</div>
-<div style="background-color:#3654ff;">
+<div style="background-color:#3654ff; ">
 <tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </div>
 

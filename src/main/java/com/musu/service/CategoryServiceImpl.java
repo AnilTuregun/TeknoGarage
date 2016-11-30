@@ -29,4 +29,9 @@ public class CategoryServiceImpl implements CategoryService {
     public List<ProductcategoriesEntity> findAll() {
         return  categoryRepository.findAll();
     }
+
+    @Override
+    public ProductcategoriesEntity findCategoryByName(String name) {
+        return  categoryRepository.findCategoryByName(name);
+    }
 }

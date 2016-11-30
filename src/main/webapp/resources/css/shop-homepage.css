@@ -5,13 +5,27 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+  padding-top: 90px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+}
+.navbar-header {
+    float: left;
+    height: 70px;
 }
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #101010;
     float: right;
-    margin-right: -130px;
-	
+margin-right: -130px; }
+.container {
+	width: 1024px;
+}	
+.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+    margin-right: 0;
+    margin-left: -140px;
 }
         ul.dropdown-cart{
     min-width:250px;
@@ -54,7 +68,7 @@ ul.dropdown-cart li .item-right button{
 }	
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-    margin-left: -140px;
+    margin-left: -160px;
 
 }
 .slide-image {
@@ -69,7 +83,11 @@ ul.dropdown-cart li .item-right button{
 .item {
     border-radius: 4px;
 }
-
+.product-caption {
+    height: 50px;
+	    margin: 5px 5px 5px 5px;
+    overflow: hidden;
+}
 .caption {
     height: 130px;
     overflow: hidden;
@@ -82,8 +100,11 @@ ul.dropdown-cart li .item-right button{
 .thumbnail img {
   
 }
-.ad{
-	
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #101010;
+    float: right;
+    margin-right: -130px;
+    margin-top: 13px;
 }
 .ratings {
     padding-right: 10px;
@@ -100,10 +121,12 @@ ul.dropdown-cart li .item-right button{
     color: #333;
 }
 .search-box{
-    width: 40%;
-	margin: 10px 10px 10px 10px;	
-    display:inline-block;
-	width:40%;
+	
+		width: 65%;
+	margin: 20px 10px 10px 50px;	
+
+		display:inline-block;
+	
 	
 }
 .form-control {
@@ -116,4 +139,19 @@ img {
 }
 footer {
     margin: 50px 0;
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 80px;
+    background:
+        /* color overlay */
+            linear-gradient(
+                    rgba(240, 212, 0, 0.45),
+                    rgba(0, 0, 0, 0.45)
+            ),
+                /* image to overlay */
+            url(http://images.cdn.fotopedia.com/_avPIZmqM3w-7z161LH_268-hd.jpg);
 }

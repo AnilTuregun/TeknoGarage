@@ -16,23 +16,6 @@
 <!-- Page Content -->
 <div class="container">
 
-    <div class="row">
-
-        <div class="col-md-3">
-            <p class="lead">Shop Name</p>
-            <div class="list-group">
-
-                <c:forEach var="category" items="${category}">
-                    <a class="list-group-item" href="<c:url value='/category/${category.categoryId}' />" >${category.categoryName}</a>
-                </c:forEach>
-            </div>
-            <div class="ad">
-                <img src="intel.jpg" alt="">
-
-            </div>
-        </div>
-
-        <div class="col-md-9">
 
             <div class="row carousel-holder">
 
@@ -70,10 +53,12 @@
 
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
+                        <a href="<c:url value='/${product.productcategoriesByProductCategoryId.categoryName}/${product.productName}' />">
                         <img src="${product.productImage}" alt="">
+                        </a>
                         <div class="caption">
                             <h4 class="pull-right">${product.productPrice}</h4>
-                            <h4><a href="#">${product.productName}</a>
+                            <h4><a href="${contextPath}/${product.productcategoriesByProductCategoryId.categoryName}/${product.productName}">${product.productName}</a>
                             </h4>
                             <p>${product.productShortDesc} <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
                         </div>
@@ -101,11 +86,7 @@
 
             </div>
 
-        </div>
-
     </div>
-
-</div>
 <!-- /.container -->
 
 
