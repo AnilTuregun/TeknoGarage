@@ -89,7 +89,7 @@ ul.dropdown-cart li .item-right button{
     overflow: hidden;
 }
 .caption {
-    height: 130px;
+    height: 80px;
     overflow: hidden;
 }
 
@@ -98,7 +98,7 @@ ul.dropdown-cart li .item-right button{
 }
 
 .thumbnail img {
-  height: 150px;
+  height: 130px;
 }
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #101010;
