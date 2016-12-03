@@ -57,6 +57,8 @@
 		<put-attribute name="content" value="/WEB-INF/views/tiles/categories.jsp"></put-attribute>
 		<put-attribute name="left_content" value="/WEB-INF/views/tiles/category.jsp"></put-attribute>
 	</definition>
+
+
 </tiles-definitions>
 
 

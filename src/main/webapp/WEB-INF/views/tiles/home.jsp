@@ -60,8 +60,8 @@
 
                             <h4><a href="${contextPath}/${product.productcategoriesByProductCategoryId.categoryName}/${product.productName}">${product.productName}</a>
                             </h4>
-                            <p>${product.productShortDesc}</p>
-                            <h4 >${product.productPrice}</h4>
+
+                            <h4 >$${product.productPrice}</h4>
                         </div>
                         <div class="ratings">
                             <p class="pull-right">15 reviews</p>
