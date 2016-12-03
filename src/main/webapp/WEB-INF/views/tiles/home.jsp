@@ -57,10 +57,11 @@
                         <img src="${product.productImage}" alt="">
                         </a>
                         <div class="caption">
-                            <h4 class="pull-right">${product.productPrice}</h4>
+
                             <h4><a href="${contextPath}/${product.productcategoriesByProductCategoryId.categoryName}/${product.productName}">${product.productName}</a>
                             </h4>
-                            <p>${product.productShortDesc} <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                            <p>${product.productShortDesc}</p>
+                            <h4 >${product.productPrice}</h4>
                         </div>
                         <div class="ratings">
                             <p class="pull-right">15 reviews</p>
