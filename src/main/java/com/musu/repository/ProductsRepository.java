@@ -3,7 +3,7 @@ package com.musu.repository;
 import com.musu.model.ProductsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ProductsRepository extends JpaRepository<ProductsEntity, Long>{
@@ -15,6 +15,9 @@ public interface ProductsRepository extends JpaRepository<ProductsEntity, Long>{
     List<ProductsEntity> findByCateogoryName(String name);
 
     @Query("select p from ProductsEntity p where p.productName = ?1")
-   ProductsEntity findByName(String name);
+    ProductsEntity findByName(String name);
+
+    @Query("select p from ProductsEntity p where p.productTags like LOWER(CONCAT('%',:tags, '%'))")
+    List<ProductsEntity> searchProductContaining(@Param("tags")String name);
 }
 

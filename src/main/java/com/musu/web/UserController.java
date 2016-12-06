@@ -72,10 +72,11 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = {"/welcome"})
-    public String showwelcome(Model model) {
-        model.addAttribute("userForm", new User());
-        return "welcome";
+    @RequestMapping(value = {"/userlist"})
+    public String showUserlist(Model model) {
+     List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        return "userlist";
     }
 
 

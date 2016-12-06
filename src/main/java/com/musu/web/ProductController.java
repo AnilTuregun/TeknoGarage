@@ -36,7 +36,6 @@ public class ProductController {
     @RequestMapping(value = {"/{category}/{name}"},method = RequestMethod.GET )
     public String showproduct(@PathVariable("name")String productname,@PathVariable("category")String category,Model model) {
         String categoryname=category;
-
         ProductcategoriesEntity catName=categoryService.findCategoryByName(categoryname);
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         ProductsEntity product = productService.findByName(productname);

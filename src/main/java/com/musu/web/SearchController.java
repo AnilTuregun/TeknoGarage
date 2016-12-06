@@ -1,43 +1,42 @@
 package com.musu.web;
 
+
 import com.musu.model.ProductcategoriesEntity;
 import com.musu.model.ProductsEntity;
-import com.musu.model.User;
 import com.musu.service.CategoryService;
 import com.musu.service.ProductService;
-import com.musu.service.SecurityService;
-import com.musu.service.UserService;
-import com.musu.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * Created by User on 3.12.2016.
+ */
 @Controller
-public class HomeController {
-    @Autowired
-    private CategoryService categoryService;
+public class SearchController {
+
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
-
-    @RequestMapping(value = {"/home"})
-    public String showhome(Model model,HttpSession session) {
-        List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
-        List<ProductsEntity> productEntitiyList = productService.findAll();
-        model.addAttribute("category",productCategoryEntitiyList);
-        model.addAttribute("products",productEntitiyList);
-        session.setAttribute("productName",productEntitiyList.get(1).getProductName());
-        return "home";
+    @RequestMapping(value = {"/searchProduct"})
+    public String showSearchResults(Model model) {
+        return "searchProduct";
     }
 
-
-
+    @RequestMapping(value = {"/searchProduct"}, method = RequestMethod.GET)
+    public String searchproduct(@RequestParam("searchProduct") String productname, Model model) {
+        List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
+        List<ProductsEntity> Searchedproducts = productService.searchProduct(productname);
+        model.addAttribute("products",Searchedproducts);
+        model.addAttribute("category",productCategoryEntitiyList);
+        return "searchProduct";
+    }
 }

@@ -24,22 +24,19 @@
         </div>
 
         <div class="search-box">
-            <input type="text" class="  search-query form-control" placeholder="Search" />
-
+            <form method="GET" action="${contextPath}/searchProduct" class="form-signin">
+            <input type="text" class="search-query form-control" placeholder="Search" name="searchProduct" />
+            </form>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-
                     <sec:authorize access="!isAuthenticated()">
                         <a href="${contextPath}/signUp">Sign up</a>
                     </sec:authorize>
 
-                    <sec:authorize access="isAuthenticated()">
-                        <div class="login" >Welcome ${pageContext.request.userPrincipal.name}</div>
-                    </sec:authorize>
                 </li>
                 <li>
                     <sec:authorize access="!isAuthenticated()">
@@ -47,7 +44,44 @@
                     </sec:authorize>
 
                     <sec:authorize access="isAuthenticated()">
-                        <a class="login" href="<c:url value='/loggedout'/>">Log out</a>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Welcome ${pageContext.request.userPrincipal.name}<span class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-cart" role="menu">
+                        <li>
+                  <span class="item">
+                    <span class="item-left">
+                        <img src="http://lorempixel.com/50/50/" alt="" />
+                        <span class="item-info">
+                            <span>Account</span>
+                        </span>
+                    </span>
+                </span>
+                        </li>
+                        <li>
+                  <span class="item">
+                    <span class="item-left">
+                        <img src="http://lorempixel.com/50/50/" alt="" />
+                        <span class="item-info">
+                            <span>MyCart</span>
+                        </span>
+                    </span>
+                </span>
+                        </li>
+                        <li>
+                  <span class="item">
+                    <span class="item-left">
+                        <img src="http://lorempixel.com/50/50/" alt="" />
+                        <span class="item-info">
+                            <span>Wishlist</span>
+                        </span>
+                    </span>
+                </span>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a class="login" href="<c:url value='/loggedout'/>">Log out</a></li>
+                    </ul>
+                </li>
                     </sec:authorize>
 
 
@@ -62,7 +96,7 @@
                     <span class="item-left">
                         <img src="http://lorempixel.com/50/50/" alt="" />
                         <span class="item-info">
-                            <span>Item name</span>
+                            <span><%=session.getAttribute("productName")%></span>
                             <span>23$</span>
                         </span>
                     </span>
