@@ -9,6 +9,7 @@ import com.musu.service.ProductService;
 import com.musu.service.SecurityService;
 import com.musu.service.UserService;
 import com.musu.validator.UserValidator;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Controller;
@@ -56,7 +57,6 @@ public class UserController {
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-
         return "redirect:/home";
     }
 

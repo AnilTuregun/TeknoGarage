@@ -13,7 +13,7 @@ public class User {
     private String email;
     private String passwordConfirm;
     private Set<Role> roles;
-
+    private Set<ShoppingCart> shoppingCarts;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -65,5 +65,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public Set<ShoppingCart> getShoppingCarts() {
+        return shoppingCarts;
+    }
+
+    public void setShoppingCarts(Set<ShoppingCart> shoppingCarts) {
+        this.shoppingCarts = shoppingCarts;
     }
 }

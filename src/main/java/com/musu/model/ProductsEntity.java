@@ -2,6 +2,7 @@ package com.musu.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Set;
 
 /**
  * Created by User on 19.11.2016.
@@ -23,6 +24,7 @@ public class ProductsEntity {
     private Byte productLive;
     private Byte productUnlimited;
     private String productTags;
+    private Set<ShoppingCart> shoppingCarts;
     private ProductcategoriesEntity productcategoriesByProductCategoryId;
 
     @Id
@@ -163,6 +165,14 @@ public class ProductsEntity {
 
     public void setProductTags(String productTags) {
         this.productTags = productTags;
+    }
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    public Set<ShoppingCart> getShoppingCarts() {
+        return shoppingCarts;
+    }
+
+    public void setShoppingCarts(Set<ShoppingCart> shoppingCarts) {
+        this.shoppingCarts = shoppingCarts;
     }
 
     @Override

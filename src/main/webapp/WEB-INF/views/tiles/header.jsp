@@ -73,7 +73,7 @@
                     <span class="item-left">
                         <img src="http://lorempixel.com/50/50/" alt="" />
                         <span class="item-info">
-                            <span>Wishlist</span>
+                            <a href="/cart">Shopping Cart</a>
                         </span>
                     </span>
                 </span>

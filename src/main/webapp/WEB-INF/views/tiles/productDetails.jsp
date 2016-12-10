@@ -39,7 +39,7 @@
         <hr>
         <div class="btn-group cart">
             <button type="button" class="btn btn-success">
-                Add to cart
+                <a href="${contextPath}/cart/${product.productName}">Add to cart</a>
             </button>
         </div>
         <div class="btn-group wishlist">

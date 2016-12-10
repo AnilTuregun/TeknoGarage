@@ -11,6 +11,7 @@
         <class>com.musu.model.ProductoptionsEntity</class>
         <class>com.musu.model.ProductsEntity</class>
         <class>com.musu.model.UsersEntity</class>
+        <class>com.musu.model.ShoppingCart</class>
 
         <properties>
 

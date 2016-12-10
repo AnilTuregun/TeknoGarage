@@ -2,11 +2,9 @@ package com.musu.web;
 
 import com.musu.model.ProductcategoriesEntity;
 import com.musu.model.ProductsEntity;
+import com.musu.model.ShoppingCart;
 import com.musu.model.User;
-import com.musu.service.CategoryService;
-import com.musu.service.ProductService;
-import com.musu.service.SecurityService;
-import com.musu.service.UserService;
+import com.musu.service.*;
 import com.musu.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +23,8 @@ public class HomeController {
     @Autowired
     private CategoryService categoryService;
     @Autowired
+    private CartService cartService;
+    @Autowired
     private ProductService productService;
 
 
@@ -32,12 +32,21 @@ public class HomeController {
     public String showhome(Model model,HttpSession session) {
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         List<ProductsEntity> productEntitiyList = productService.findAll();
+        List<ShoppingCart> shoppingCart=cartService.findAll();
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("products",productEntitiyList);
-        session.setAttribute("productName",productEntitiyList.get(1).getProductName());
+        model.addAttribute("shoppingCart",shoppingCart);
         return "home";
     }
 
+    @RequestMapping(value = {"/"})
+    public String showhome1(Model model,HttpSession session) {
+        List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
+        List<ProductsEntity> productEntitiyList = productService.findAll();
+        model.addAttribute("category",productCategoryEntitiyList);
+        model.addAttribute("products",productEntitiyList);
 
+        return "home";
+    }
 
 }
