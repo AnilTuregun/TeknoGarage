@@ -36,4 +36,19 @@ public class CartServiceImpl implements CartService {
     public void update(int quantity, int id) {
         cartRepository.updateShopingCart(quantity,id);
     }
+
+    @Override
+    public List<ShoppingCart> shoppingCartByName(String name, String uname) {
+  return cartRepository.findCartProductByProductName(name, uname);
+    }
+
+    @Override
+    public void deleteItemFromCart(int id) {
+        cartRepository.deleteItemFromCart(id);
+    }
+
+
+    public void delete(ShoppingCart shoppingCart) {
+        cartRepository.delete(shoppingCart);
+    }
 }

@@ -11,4 +11,6 @@ public interface CartService {
     List<ShoppingCart> findCartByUser(String name);
     List<ShoppingCart> findCartProductByProductId(String name,int id);
     void update(int quantity,int id);
+    List<ShoppingCart> shoppingCartByName(String name,String uname);
+    void deleteItemFromCart(int id);
 }

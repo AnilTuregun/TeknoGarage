@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                 <c:forEach var="shoppingCart" items="${shoppingCarts}">
-                <tr>
+                <tr class="productRow">
 
                     <td class="col-sm-8 col-md-6">
                         <div class="media">
@@ -27,13 +27,15 @@
                             </div>
                         </div></td>
                     <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="${shoppingCart.quantity}">
+                        <input onchange="UpdateSubtotal()" type="email" class="form-control" id="productQuantity" value="${shoppingCart.quantity}">
                     </td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong>${shoppingCart.product.productPrice}</strong></td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                    <td id="productPrice" class="col-sm-1 col-md-1 text-center"><strong>${shoppingCart.product.productPrice}</strong></td>
+                    <td class="col-sm-1 col-md-1 text-center" id="subTotal" >${shoppingCart.quantity*shoppingCart.product.productPrice}</td>
                     <td class="col-sm-1 col-md-1">
                         <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <a href="/cart/remove/${shoppingCart.product.productName}">Remove</a>
+
                         </button></td>
                 </tr>
                 </c:forEach>
@@ -41,22 +43,8 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><h5>Subtotal</h5></td>
-                    <td class="text-right"><h5><strong>$24.59</strong></h5></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><h5>Estimated shipping</h5></td>
-                    <td class="text-right"><h5><strong>$6.94</strong></h5></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                    <td><h5>Total</h5></td>
+                    <td class="text-right"><h5><strong>$${total}</strong></h5></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -76,3 +64,43 @@
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+      console.log("sdfaa");
+     /*UpdateSubtotal();*/
+      console.log("sdfaa");
+      Total();
+      console.log("fafaaaaaaaf");
+  });
+    function UpdateSubtotal() {
+      /*  $('.productRow').each(function (index) {
+            var quantity=$(this).find('input#productQuantity').text();
+            var price=$(this).find('td#productPrice').text();
+            console.log("sdf");
+            console.log(quantity);
+            console.log("sdf");
+            console.log(price);
+            console.log("aaaaaaaaaaaaa");
+
+            $(this).find('td#subTotal').text(quantity);
+
+
+        });*/
+    }
+    function Total() {
+        var total=0;
+        $('#subTotal').each(function (index) {
+,
+        total +=parseInt( $('#subTotal').index(index).text());
+
+
+
+        });
+        $(this).find('#total').text(total);
+        alert(total);
+    }
+</script>

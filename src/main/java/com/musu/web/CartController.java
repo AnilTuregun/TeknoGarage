@@ -47,6 +47,7 @@ public class CartController {
      ShoppingCart sCart= shoppingCart1.get(0);
             quantity++;
             sCart.setQuantity(quantity);
+            int id =shoppingCart1.get(0).getId();
      cartService.update(quantity,shoppingCart1.get(0).getId());
         }
         else{
@@ -67,16 +68,42 @@ public class CartController {
     public String showCart(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
-
+        int total=0;
         if (principal instanceof UserDetails) {
             username = ((UserDetails)principal).getUsername();
         } else {
             username = principal.toString();
         }
         List<ShoppingCart> shoppingCarts=cartService.findCartByUser(username);
+        for(int i=0;i<shoppingCarts.size();i++){
+           total+=shoppingCarts.get(i).getQuantity()*shoppingCarts.get(i).getProduct().getProductPrice();
+        }
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("shoppingCarts",shoppingCarts);
+        model.addAttribute("total",total);
+        return "cart";
+    }
+    @RequestMapping(value = {"/cart/remove/{name}"})
+    public String DeleteItemFromCart(@PathVariable("name")String productname,Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        int total=0;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+       List<ShoppingCart> shoppingCart=cartService.shoppingCartByName(username,productname);
+        cartService.deleteItemFromCart(shoppingCart.get(0).getId());
+        List<ShoppingCart> shoppingCarts=cartService.findCartByUser(username);
+        for(int i=0;i<shoppingCarts.size();i++){
+            total+=shoppingCarts.get(i).getQuantity()*shoppingCarts.get(i).getProduct().getProductPrice();
+        }
+        List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
+        model.addAttribute("category",productCategoryEntitiyList);
+        model.addAttribute("shoppingCarts",shoppingCarts);
+        model.addAttribute("total",total);
         return "cart";
     }
 }
