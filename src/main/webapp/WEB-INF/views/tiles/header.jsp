@@ -84,11 +84,15 @@
                 </li>
                     </sec:authorize>
 
-
                 </li>
+
                 <li>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
+                            <c:if test="${pageContext.request.userPrincipal.name =='adminadmin'}">
+                        <li><a href="/userlist">Admin Panel</a> </li>
+                        </c:if>
+                            <c:if test="${pageContext.request.userPrincipal.name !='adminadmin'}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> 7 - Items<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-cart" role="menu">
                                 <li>
@@ -150,9 +154,12 @@
                                 <li class="divider"></li>
                                 <li><a class="text-center" href="">View Cart</a></li>
                             </ul>
+                            </c:if>
                         </li>
+
                     </ul>
             </ul>
+
             </li>
             </ul>
         </div>
