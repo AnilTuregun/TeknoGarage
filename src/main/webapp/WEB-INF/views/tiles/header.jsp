@@ -6,8 +6,8 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -51,7 +51,7 @@
                         <li>
                   <span class="item">
                     <span class="item-left">
-                        <img src="http://lorempixel.com/50/50/" alt="" />
+                        <img src="/resources/image/user_icon.png" alt="" />
                         <span class="item-info">
                             <span>Account</span>
                         </span>
@@ -61,9 +61,9 @@
                         <li>
                   <span class="item">
                     <span class="item-left">
-                        <img src="http://lorempixel.com/50/50/" alt="" />
+                        <img src="/resources/image/orderIcon.png" alt="" />
                         <span class="item-info">
-                            <span>MyCart</span>
+                            <span>MyOrders</span>
                         </span>
                     </span>
                 </span>
@@ -71,7 +71,7 @@
                         <li>
                   <span class="item">
                     <span class="item-left">
-                        <img src="http://lorempixel.com/50/50/" alt="" />
+                        <img src="/resources/image/shoppinCartIcon.png" alt="" />
                         <span class="item-info">
                             <a href="/cart">Shopping Cart</a>
                         </span>
@@ -92,67 +92,26 @@
                             <c:if test="${pageContext.request.userPrincipal.name =='adminadmin'}">
                         <li><a href="/userlist">Admin Panel</a> </li>
                         </c:if>
-                            <c:if test="${pageContext.request.userPrincipal.name !='adminadmin'}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> 7 - Items<span class="caret"></span></a>
+                        <c:if test="${pageContext.request.userPrincipal.name !='adminadmin'}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> ${shoppingCart.size()} - Items<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-cart" role="menu">
+                                <c:if test="${pageContext.request.userPrincipal.name !=null}">
+                                <c:forEach var="cart" items="${shoppingCart}">
                                 <li>
                   <span class="item">
                     <span class="item-left">
-                        <img src="http://lorempixel.com/50/50/" alt="" />
+                        <img src="${cart.product.productImage}"  alt="" style="width: 72px; height: 72px;"/>
                         <span class="item-info">
-                            <span><%=session.getAttribute("productName")%></span>
-                            <span>23$</span>
+                            <span>${cart.product.productName}</span>
+                            <span>${cart.product.productPrice}</span>
                         </span>
-                    </span>
-                    <span class="item-right">
-                        <button class="btn btn-xs btn-danger pull-right">x</button>
                     </span>
                 </span>
                                 </li>
-                                <li>
-                  <span class="item">
-                    <span class="item-left">
-                        <img src="http://lorempixel.com/50/50/" alt="" />
-                        <span class="item-info">
-                            <span>Item name</span>
-                            <span>23$</span>
-                        </span>
-                    </span>
-                    <span class="item-right">
-                        <button class="btn btn-xs btn-danger pull-right">x</button>
-                    </span>
-                </span>
-                                </li>
-                                <li>
-                  <span class="item">
-                    <span class="item-left">
-                        <img src="http://lorempixel.com/50/50/" alt="" />
-                        <span class="item-info">
-                            <span>Item name</span>
-                            <span>23$</span>
-                        </span>
-                    </span>
-                    <span class="item-right">
-                        <button class="btn btn-xs btn-danger pull-right">x</button>
-                    </span>
-                </span>
-                                </li>
-                                <li>
-                  <span class="item">
-                    <span class="item-left">
-                        <img src="http://lorempixel.com/50/50/" alt="" />
-                        <span class="item-info">
-                            <span>Item name</span>
-                            <span>23$</span>
-                        </span>
-                    </span>
-                    <span class="item-right">
-                        <button class="btn btn-xs btn-danger pull-right">x</button>
-                    </span>
-                </span>
-                                </li>
+                                </c:forEach>
+                                    </c:if>
                                 <li class="divider"></li>
-                                <li><a class="text-center" href="">View Cart</a></li>
+                                <li><a class="text-center" href="/cart">View Cart</a></li>
                             </ul>
                             </c:if>
                         </li>

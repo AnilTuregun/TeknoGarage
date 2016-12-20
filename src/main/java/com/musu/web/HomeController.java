@@ -7,6 +7,8 @@ import com.musu.model.User;
 import com.musu.service.*;
 import com.musu.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,12 +23,11 @@ import java.util.List;
 @Controller
 public class HomeController {
     @Autowired
-    private CategoryService categoryService;
-    @Autowired
     private CartService cartService;
     @Autowired
     private ProductService productService;
-
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = {"/home"})
     public String showhome(Model model,HttpSession session) {
@@ -35,7 +36,19 @@ public class HomeController {
         List<ShoppingCart> shoppingCart=cartService.findAll();
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("products",productEntitiyList);
-        model.addAttribute("shoppingCart",shoppingCart);
+
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        List<ShoppingCart> shoppingCarts=cartService.findCartByUser(username);
+
+        session.setAttribute("shoppingCart",shoppingCarts);
         return "home";
     }
 
@@ -45,7 +58,6 @@ public class HomeController {
         List<ProductsEntity> productEntitiyList = productService.findAll();
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("products",productEntitiyList);
-
         return "home";
     }
 

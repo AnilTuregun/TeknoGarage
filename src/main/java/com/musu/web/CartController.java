@@ -9,6 +9,7 @@ package com.musu.web;
         import com.musu.service.ProductService;
         import com.musu.service.UserService;
         import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.http.HttpRequest;
         import org.springframework.security.core.context.SecurityContextHolder;
         import org.springframework.security.core.userdetails.UserDetails;
         import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ package com.musu.web;
         import org.springframework.web.bind.annotation.PathVariable;
         import org.springframework.web.bind.annotation.RequestMapping;
 
+        import javax.servlet.http.HttpSession;
         import java.util.List;
 
 @Controller
@@ -30,7 +32,7 @@ public class CartController {
     private ProductService productService;
 
     @RequestMapping(value = {"/cart/{product}"})
-    public String showhome(Model model, @PathVariable("product")String productname) {
+    public String showhome(Model model, @PathVariable("product")String productname, HttpSession session) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
 
@@ -62,6 +64,7 @@ public class CartController {
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("shoppingCarts",shoppingCarts);
+        session.setAttribute("shoppingCart",shoppingCarts);
         return "cart";
     }
     @RequestMapping(value = {"/cart"})
@@ -85,7 +88,7 @@ public class CartController {
         return "cart";
     }
     @RequestMapping(value = {"/cart/remove/{name}"})
-    public String DeleteItemFromCart(@PathVariable("name")String productname,Model model) {
+    public String DeleteItemFromCart(@PathVariable("name")String productname,Model model,HttpSession session) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         int total=0;
@@ -104,6 +107,7 @@ public class CartController {
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("shoppingCarts",shoppingCarts);
         model.addAttribute("total",total);
+        session.setAttribute("shoppingCart",shoppingCarts);
         return "cart";
     }
 }
