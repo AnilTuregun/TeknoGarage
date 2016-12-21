@@ -1,4 +1,4 @@
-# Registration and Login Example with Spring MVC 4, Spring Security, Spring Data JPA, XML Configuration, Maven, JSP, and MySQL.
+#E Commerce with Spring MVC 4, Spring Security, Spring Data JPA, XML Configuration, Maven, JSP, and MySQL.
 
 ## Guide
 https://musu.com/eCommerce-with-spring-xml-configuration-maven-jsp-and-mysql/
@@ -17,4 +17,4 @@ https://musu.com/eCommerce-with-spring-xml-configuration-maven-jsp-and-mysql/
 - MySQL
 
 ## Run
-```mvn jetty:run```
+```mvn tomcat:run```
