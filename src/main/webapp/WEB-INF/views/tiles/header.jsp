@@ -53,7 +53,7 @@
                     <span class="item-left">
                         <img src="/resources/image/user_icon.png" alt="" />
                         <span class="item-info">
-                            <span>Account</span>
+                            <a href="/account">Account</a>
                         </span>
                     </span>
                 </span>

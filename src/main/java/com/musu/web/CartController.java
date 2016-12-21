@@ -110,4 +110,9 @@ public class CartController {
         session.setAttribute("shoppingCart",shoppingCarts);
         return "cart";
     }
+    @RequestMapping(value = {"/checkOut"})
+    public String showCheckOut(Model model) {
+
+        return "checkOut";
+    }
 }

@@ -2,6 +2,7 @@ package com.musu.web;
 
 import com.musu.model.ProductcategoriesEntity;
 import com.musu.model.ProductsEntity;
+import com.musu.model.ShoppingCart;
 import com.musu.model.User;
 import com.musu.repository.ProductcategoriesRepository;
 import com.musu.service.CategoryService;
@@ -12,6 +13,8 @@ import com.musu.validator.UserValidator;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -86,7 +89,20 @@ public class UserController {
         session.invalidate();
         return "redirect:/home";
     }
-
+    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    public String account(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        int total=0;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+      User user =userService.findByUsername(username);
+        model.addAttribute("user",user);
+        return "account";
+    }
 
 
 

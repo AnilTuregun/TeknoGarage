@@ -51,13 +51,13 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <button href="/home" type="button" class="btn btn-default">
+                        <a href="/home"  class="btn btn-default">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
+                        </a></td>
                     <td>
-                        <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                        <a href="/checkOut" class="btn btn-success" >
+                            Check-Out
+                        </a></td>
                 </tr>
                 </tbody>
             </table>
