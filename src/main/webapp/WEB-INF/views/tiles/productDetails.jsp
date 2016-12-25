@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 
 <!-- Navigation -->
@@ -90,7 +91,42 @@
 
             </div>
             <div class="tab-pane fade" id="service-three">
-There is no review about this product
+                <c:forEach var="review" items="${reviews}">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="page-header">
+                                <h1><small class="pull-right">${reviews.size()} comments</small> Comments </h1>
+                            </div>
+                            <div class="comments-list">
+                                <div class="media">
+                                    <p class="pull-right"><small> ${review.reviewDate}</small></p>
+                                    <div class="media-body">
+
+                                        <h4 class="media-heading user_name">${review.user.userFirstname}</h4>
+                                            ${review.review}
+
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </c:forEach>
+                <div class="row" id="post-review-box">
+                    <div class="col-md-8">
+                        <form:form action="/review/${product.productName}" method="post">
+                            <input id="ratings-hidden" name="rating" type="hidden">
+                            <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
+
+                            <div class="text-right">
+                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="margin-right: 10px;">
+                                    <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                <button class="btn btn-success btn-lg" type="submit">Save</button>
+                            </div>
+                        </form:form>
+                    </div>
+                </div>
+
             </div>
         </div>
         <hr>
@@ -123,6 +159,7 @@ There is no review about this product
         document.getElementById("img2").src = ProductImage;
         document.getElementById("img3").src = ProductImage;
     }
+
 </script>
 
 <!-- jQuery -->

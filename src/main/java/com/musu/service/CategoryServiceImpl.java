@@ -24,7 +24,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     }
 
-
     @Override
     public List<ProductcategoriesEntity> findAll() {
         return  categoryRepository.findAll();

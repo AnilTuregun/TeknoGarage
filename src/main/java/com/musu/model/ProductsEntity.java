@@ -25,6 +25,7 @@ public class ProductsEntity {
     private Byte productUnlimited;
     private String productTags;
     private Set<ShoppingCart> shoppingCarts;
+    private Set<Reviews> reviews;
     private ProductcategoriesEntity productcategoriesByProductCategoryId;
 
     @Id
@@ -166,6 +167,7 @@ public class ProductsEntity {
     public void setProductTags(String productTags) {
         this.productTags = productTags;
     }
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     public Set<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
@@ -173,6 +175,15 @@ public class ProductsEntity {
 
     public void setShoppingCarts(Set<ShoppingCart> shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
+    }
+
+    @OneToMany(mappedBy = "productsEntity", cascade = CascadeType.ALL)
+    public Set<Reviews> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Reviews> reviews) {
+        this.reviews = reviews;
     }
 
     @Override

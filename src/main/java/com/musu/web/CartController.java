@@ -1,9 +1,6 @@
 package com.musu.web;
 
-        import com.musu.model.ProductcategoriesEntity;
-        import com.musu.model.ProductsEntity;
-        import com.musu.model.ShoppingCart;
-        import com.musu.model.User;
+        import com.musu.model.*;
         import com.musu.service.CartService;
         import com.musu.service.CategoryService;
         import com.musu.service.ProductService;
@@ -16,7 +13,8 @@ package com.musu.web;
         import org.springframework.ui.Model;
         import org.springframework.web.bind.annotation.PathVariable;
         import org.springframework.web.bind.annotation.RequestMapping;
-
+        import org.springframework.web.bind.annotation.RequestMethod;
+        import org.springframework.web.bind.annotation.ModelAttribute;
         import javax.servlet.http.HttpSession;
         import java.util.List;
 
@@ -110,9 +108,15 @@ public class CartController {
         session.setAttribute("shoppingCart",shoppingCarts);
         return "cart";
     }
-    @RequestMapping(value = {"/checkOut"})
+    @RequestMapping(value = {"/checkOut"},method = RequestMethod.GET)
     public String showCheckOut(Model model) {
+        model.addAttribute("order", new OrdersEntity());
+        return "checkOut";
+    }
 
+    @RequestMapping(value = {"/checkOut"},method = RequestMethod.POST)
+    public String registerCheckOut(@ModelAttribute("order") OrdersEntity ordersEntity) {
+OrdersEntity ordersEntity1=ordersEntity;
         return "checkOut";
     }
 }

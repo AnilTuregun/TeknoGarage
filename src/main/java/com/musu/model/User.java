@@ -15,6 +15,7 @@ public class User {
     private String passwordConfirm;
     private Set<Role> roles;
     private Set<ShoppingCart> shoppingCarts;
+    private Set<Reviews> reviews;
     private String userFirstname;
     private String userLastname;
     private String userCity;
@@ -93,6 +94,15 @@ public class User {
 
     public void setShoppingCarts(Set<ShoppingCart> shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
+    }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public Set<Reviews> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Reviews> reviews) {
+        this.reviews = reviews;
     }
 
     @Basic

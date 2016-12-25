@@ -74,6 +74,16 @@
         <put-attribute name="title" value="Login Deneme"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/views/tiles/checkOut.jsp"></put-attribute>
     </definition>
+
+	<definition name="productlist" extends="musu.default2">
+		<put-attribute name="title" value="Product List"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/adminTiles/productlist.jsp"></put-attribute>
+	</definition>
+
+	<definition name="searchProduct" extends="musu.default2">
+		<put-attribute name="title" value="Product List"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/tiles/searchProduct.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
 
 
