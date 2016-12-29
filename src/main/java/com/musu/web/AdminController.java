@@ -1,13 +1,7 @@
 package com.musu.web;
 
-import com.musu.model.ProductcategoriesEntity;
-import com.musu.model.ProductsEntity;
-import com.musu.model.Reviews;
-import com.musu.model.ShoppingCart;
-import com.musu.service.CartService;
-import com.musu.service.CategoryService;
-import com.musu.service.ProductService;
-import com.musu.service.ReviewService;
+import com.musu.model.*;
+import com.musu.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,11 +23,14 @@ public class AdminController {
     private CategoryService categoryService;
     @Autowired
     private ReviewService reviewService;
-
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private UserService userService;
     private int productId;
 
 
-    @RequestMapping(value = {"/productList"},method = RequestMethod.GET)
+    @RequestMapping(value = {"/adminpanel/productlist"},method = RequestMethod.GET)
     public String showProduct(Model model,HttpSession session) {
         List<ProductsEntity> productEntityList = productService.findAll();
         model.addAttribute("products",productEntityList);
@@ -41,10 +38,24 @@ public class AdminController {
     }
     @RequestMapping(value = {"/adminpanel"},method = RequestMethod.GET)
     public String showAdminPanel(Model model,HttpSession session) {
-        
+        List<OrdersEntity> orders= orderService.findAll();
         List<Reviews> reviews= reviewService.findAll();
+        List<User> users=userService.findAll();
         model.addAttribute("review",reviews);
+        model.addAttribute("order",orders);
+        model.addAttribute("user",users);
+
+
+
+
+
         return "adminpanel";
 }
+    @RequestMapping(value = "/adminpanel/addProduct", method = RequestMethod.POST)
+    public String addProduct(Model model) {
+
+        model.addAttribute("productForm", new ProductsEntity());
+        return "/adminpanel/productlist";
+    }
 
 }

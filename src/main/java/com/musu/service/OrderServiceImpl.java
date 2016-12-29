@@ -11,11 +11,17 @@ import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+
     @Autowired
     private OrdersRepository ordersRepository;
 
     @Override
     public void save(OrdersEntity ordersEntity) {
         ordersRepository.save(ordersEntity);
+    }
+
+    @Override
+    public List<OrdersEntity> findAll() {
+        return ordersRepository.findAll();
     }
 }

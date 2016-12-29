@@ -31,8 +31,8 @@
 		<put-attribute name="includes" value=""></put-attribute>
 		<put-attribute name="title" value="Offers Homepage"></put-attribute>
 		<put-attribute name="header" value="/WEB-INF/views/adminTiles/adminheader.jsp"></put-attribute>
-		<put-attribute name="content" value="/WEB-INF/views/adminTiles/admincontent.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/views/adminTiles/adminfooter.jsp"></put-attribute>
+		<put-attribute name="content" value=""></put-attribute>
+		<put-attribute name="sidebars" value="/WEB-INF/views/adminTiles/adminsidebar.jsp"></put-attribute>
 	</definition>
 	<definition name="login" extends="musu.base">
 		<put-attribute name="title" value="Login Deneme"></put-attribute>
@@ -82,7 +82,7 @@
         <put-attribute name="content" value="/WEB-INF/views/tiles/checkOut.jsp"></put-attribute>
     </definition>
 
-	<definition name="productlist" extends="musu.default2">
+	<definition name="productlist" extends="musu.admintemp">
 		<put-attribute name="title" value="Product List"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/adminTiles/productlist.jsp"></put-attribute>
 	</definition>

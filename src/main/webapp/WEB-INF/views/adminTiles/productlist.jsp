@@ -11,7 +11,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <div class="container">
-    <div >
+    <div style="margin-left: 120px" >
         <table class="table table-striped custab">
             <thead>
             <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>

@@ -24,6 +24,12 @@
 
 </head>
 <body>
+<div class="header">
+    <tiles:insertAttribute name="header"></tiles:insertAttribute>
+</div>
+<div class="sidebars">
+    <tiles:insertAttribute name="sidebars"></tiles:insertAttribute>
+</div>
 <div class="content">
     <tiles:insertAttribute name="content"></tiles:insertAttribute>
 </div>

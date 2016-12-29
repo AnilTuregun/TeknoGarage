@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface OrderService {
     void save(OrdersEntity ordersEntity);
-
+    List<OrdersEntity> findAll();
 }
