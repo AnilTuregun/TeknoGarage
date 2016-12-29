@@ -26,7 +26,7 @@ public class User {
     private Integer userVerificationCode;
     private Integer userPhone;
     private String userAdress;
-
+    private Set<OrdersEntity> ordersEntities;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -85,6 +85,14 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<OrdersEntity> getOrdersEntities() {
+        return ordersEntities;
+    }
+
+    public void setOrdersEntities(Set<OrdersEntity> ordersEntities) {
+        this.ordersEntities = ordersEntities;
     }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

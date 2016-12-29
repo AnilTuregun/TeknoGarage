@@ -1,10 +1,7 @@
 package com.musu.web;
 
         import com.musu.model.*;
-        import com.musu.service.CartService;
-        import com.musu.service.CategoryService;
-        import com.musu.service.ProductService;
-        import com.musu.service.UserService;
+        import com.musu.service.*;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.HttpRequest;
         import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +19,8 @@ package com.musu.web;
 public class CartController {
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private OrderService orderService;
     @Autowired
     private UserService userService;
     @Autowired
@@ -116,7 +115,18 @@ public class CartController {
 
     @RequestMapping(value = {"/checkOut"},method = RequestMethod.POST)
     public String registerCheckOut(@ModelAttribute("order") OrdersEntity ordersEntity) {
-OrdersEntity ordersEntity1=ordersEntity;
-        return "checkOut";
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        User user=userService.findByUsername(username);
+    OrdersEntity ordersEntity1=ordersEntity;
+        ordersEntity.setUserId(user);
+   orderService.save(ordersEntity1);
+        return "redirect:/home";
     }
 }

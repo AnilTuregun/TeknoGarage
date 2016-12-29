@@ -22,7 +22,7 @@ public class OrdersEntity {
     private Timestamp orderDate;
     private byte orderShipped;
     private String orderTrackingNumber;
-
+    private User userId;
     @Id
     @Column(name = "OrderID")
     public int getOrderId() {
@@ -147,6 +147,16 @@ public class OrdersEntity {
     @Column(name = "OrderTrackingNumber")
     public String getOrderTrackingNumber() {
         return orderTrackingNumber;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "OrderUserID", referencedColumnName = "id", nullable = false)
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     public void setOrderTrackingNumber(String orderTrackingNumber) {

@@ -1,9 +1,6 @@
 package com.musu.web;
 
-import com.musu.model.ProductcategoriesEntity;
-import com.musu.model.ProductsEntity;
-import com.musu.model.ShoppingCart;
-import com.musu.model.User;
+import com.musu.model.*;
 import com.musu.repository.ProductcategoriesRepository;
 import com.musu.service.CategoryService;
 import com.musu.service.ProductService;
@@ -27,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -100,6 +98,7 @@ public class UserController {
             username = principal.toString();
         }
       User user =userService.findByUsername(username);
+        Set<OrdersEntity> ordersEntities=user.getOrdersEntities();
         model.addAttribute("user",user);
         return "account";
     }
