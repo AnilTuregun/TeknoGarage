@@ -2,10 +2,12 @@ package com.musu.web;
 
 import com.musu.model.ProductcategoriesEntity;
 import com.musu.model.ProductsEntity;
+import com.musu.model.Reviews;
 import com.musu.model.ShoppingCart;
 import com.musu.service.CartService;
 import com.musu.service.CategoryService;
 import com.musu.service.ProductService;
+import com.musu.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +27,8 @@ public class AdminController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    private ReviewService reviewService;
+    private int productId;
 
 
     @RequestMapping(value = {"/productList"},method = RequestMethod.GET)
@@ -32,6 +36,13 @@ public class AdminController {
         List<ProductsEntity> productEntityList = productService.findAll();
         model.addAttribute("products",productEntityList);
         return "productlist";
+    }
+    @RequestMapping(value = {"/adminpanel"},method = RequestMethod.GET)
+    public String showAdminPanel(Model model,HttpSession session) {
+        
+        List<Reviews> reviews= reviewService.findAll();
+        model.addAttribute("reviews",reviews);
+        return "adminpanel";
     }
 
 }
