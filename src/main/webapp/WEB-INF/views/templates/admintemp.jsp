@@ -8,21 +8,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
     <title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
-    <link href="<c:url value='/resources/css/bootstrap.css' />"  rel="stylesheet"></link>
-    <link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet"></link>
-    <link href="<c:url value='/resources/css/styles.css' />" rel="stylesheet"></link>
+
+    <link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet">
+    <link href="<c:url value='/resources/css/styles.css' />" rel="stylesheet">
 
 
-    <script src="js/chart.min.js"></script>
-    <script src="js/chart-data.js"></script>
-    <script src="js/easypiechart.js"></script>
-    <script src="js/easypiechart-data.js"></script>
     <script type="text/javascript"
-            src="${pageContext.request.contextPath}/resources/script/bootstrap.min.js"></script>
+            src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
     <script type="text/javascript"
-            src="${pageContext.request.contextPath}/resources/script/jquery.js"></script>
+            src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
     <script type="text/javascript"
-            src="${pageContext.request.contextPath}/resources/script/lumino.glyphs.js.js"></script>
+            src="${pageContext.request.contextPath}/resources/js/lumino.glyphs.js"></script>
     <tiles:insertAttribute name="includes"></tiles:insertAttribute>
 
 

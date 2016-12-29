@@ -91,13 +91,13 @@
                     <div class="col-sm-3 col-lg-5 widget-left">
                         <svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
                     </div>
-                    <c:forEach var="reviews" items="${reviews}">
+
                         <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">${reviews.size()}</div>
+                            <div class="large"><c:out value="${review.size()}" /></div>
                             <div class="text-muted">Total Orders</div>
                         </div>
 
-                    </c:forEach>
+
 
                 </div>
             </div>
@@ -143,18 +143,7 @@
         </div>
     </div><!--/.row-->
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Site Traffic Overview</div>
-                <div class="panel-body">
-                    <div class="canvas-wrapper">
-                        <canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--/.row-->
+
 
 
 

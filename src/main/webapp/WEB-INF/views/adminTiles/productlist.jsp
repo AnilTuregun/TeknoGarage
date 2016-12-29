@@ -40,7 +40,7 @@
             </tr>
             </thead>
             <c:forEach var="product" items="${products}">
-                ${product.size()}
+
                 <tr>
                 <td>${product.productId}</td>
                 <td>${product.productName}</td>

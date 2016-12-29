@@ -27,7 +27,9 @@ public class AdminController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
     private ReviewService reviewService;
+
     private int productId;
 
 
@@ -41,8 +43,8 @@ public class AdminController {
     public String showAdminPanel(Model model,HttpSession session) {
         
         List<Reviews> reviews= reviewService.findAll();
-        model.addAttribute("reviews",reviews);
+        model.addAttribute("review",reviews);
         return "adminpanel";
-    }
+}
 
 }
