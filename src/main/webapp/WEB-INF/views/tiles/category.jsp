@@ -10,7 +10,7 @@
     </c:forEach>
 </div>
 <div class="ad">
-    <img src="intel.jpg" alt="">
+    <img src="../../../resources/image/intel.jpg" alt="">
 
 </div>
 
