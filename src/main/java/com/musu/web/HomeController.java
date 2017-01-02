@@ -1,9 +1,6 @@
 package com.musu.web;
 
-import com.musu.model.ProductcategoriesEntity;
-import com.musu.model.ProductsEntity;
-import com.musu.model.ShoppingCart;
-import com.musu.model.User;
+import com.musu.model.*;
 import com.musu.service.*;
 import com.musu.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +25,18 @@ public class HomeController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private SliderService sliderService;
 
     @RequestMapping(value = {"/home"})
     public String showhome(Model model,HttpSession session) {
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         List<ProductsEntity> productEntitiyList = productService.findAll();
         List<ShoppingCart> shoppingCart=cartService.findAll();
+        List<Slider> sliderList= sliderService.findActiveSlider();
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("products",productEntitiyList);
-
+        model.addAttribute("sliders",sliderList );
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
@@ -56,8 +56,10 @@ public class HomeController {
     public String showhome1(Model model,HttpSession session) {
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         List<ProductsEntity> productEntitiyList = productService.findAll();
+        List<Slider> sliderList= sliderService.findActiveSlider();
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("products",productEntitiyList);
+        model.addAttribute("sliders",sliderList );
         return "home";
     }
 

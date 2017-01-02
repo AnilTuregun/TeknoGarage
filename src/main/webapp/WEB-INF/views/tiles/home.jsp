@@ -26,17 +26,17 @@
                             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                         </ol>
+
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <img class="slide-image" src="../../../resources/image/samsung.jpg" alt="">
-                            </div>
+                            <c:forEach var="slider" items="${sliders}">
                             <div class="item">
-                                <img class="slide-image" src="../../../resources/image/800.jpg" alt="">
+
+                                <img class="slide-image" src="../../..${slider.sliderImage}" alt="">
+
                             </div>
-                            <div class="item">
-                                <img class="slide-image" src="../../../resources/image/tel.png" alt="">
-                            </div>
+                            </c:forEach>
                         </div>
+
                         <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
@@ -78,12 +78,6 @@
                 </c:forEach>
            
 
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <h4><a href="#">Like this template?</a>
-                    </h4>
-                    <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
-                    <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
-                </div>
 
             </div>
 
