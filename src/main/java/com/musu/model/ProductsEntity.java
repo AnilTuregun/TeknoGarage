@@ -28,6 +28,9 @@ public class ProductsEntity {
     private Set<Reviews> reviews;
     private ProductcategoriesEntity productcategoriesByProductCategoryId;
 
+
+
+
     @Id
     @Column(name = "ProductID")
     public int getProductId() {

@@ -96,7 +96,10 @@
 		<put-attribute name="title" value="Product List"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/adminTiles/adminpanel.jsp"></put-attribute>
 	</definition>
-
+	<definition name="addProduct" extends="musu.base">
+		<put-attribute name="title" value="Product List"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/adminTiles/addProduct.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
 
 

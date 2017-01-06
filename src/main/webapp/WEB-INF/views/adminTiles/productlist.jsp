@@ -14,7 +14,7 @@
     <div style="margin-left: 120px" >
         <table class="table table-striped custab">
             <thead>
-            <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+            <a href="${contextPath}/adminpanel/addProduct" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
             <tr>
                 <th>Product Id</th>
                 <th>Name</th>
@@ -48,8 +48,8 @@
                 <td>${product.productPrice}</td>
                 <td>${product.productWeight}</td>
                 <td>${product.productLongDesc}</td>
-                <td>${product.productImage}</td>
-                <td>${product.productcategoriesByProductCategoryId.categoryName}</td>
+               <td> <img name="img1" src="${product.productImage}" alt="" style="width: 35px; height: 35px;"/></td>
+                 <td>${product.productcategoriesByProductCategoryId.categoryName}</td>
                 <td>${product.productUpdateDate}</td>
                 <td>${product.productStock}</td>
                 <td>${product.productLive}</td>

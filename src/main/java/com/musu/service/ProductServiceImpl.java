@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void save(ProductsEntity product) {
-
+            productsRepository.save(product);
     }
 
     @Override
