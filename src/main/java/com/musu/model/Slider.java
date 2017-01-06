@@ -14,7 +14,21 @@ public class Slider {
     private String SliderImage;
     private String Link;
     private int Active;
+
     private String SliderName;
+    private int SliderPosition;
+
+
+
+    @Basic
+    @Column(name ="SliderPosition")
+    public int getSliderPosition() {
+        return SliderPosition;
+    }
+
+    public void setSliderPosition(int sliderPosition) {
+        SliderPosition = sliderPosition;
+    }
 
 
 

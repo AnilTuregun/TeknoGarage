@@ -18,32 +18,51 @@
 
 
             <div class="row carousel-holder">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <c:forEach var="slider" items="${sliders}" varStatus="statuss" >
+                            <c:choose>
+                            <c:when test="${statuss.first}">
+                                <li data-target="#carousel-example-generic" data-slide-to="${statuss.index}" class="active"></li>
+                                </c:when>
+                            <c:otherwise>
+                                <li data-target="#carousel-example-generic" data-slide-to="${statuss.index}"></li>
+                                </c:otherwise>
 
-                <div class="col-md-12">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
+                            </c:choose>
+                        </c:forEach>
 
-                        <div class="carousel-inner">
-                            <c:forEach var="slider" items="${sliders}">
-                            <div class="item">
 
-                                <img class="slide-image" src="../../..${slider.sliderImage}" alt="">
+                    </ol>
+                    <div class="carousel-inner">
 
-                            </div>
-                            </c:forEach>
-                        </div>
+                            <c:forEach var="slider" items="${sliders}" varStatus="statuss" >
 
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
+                            <c:choose>
+                                <c:when test="${statuss.first}">
+                                    <div class="item active">
+                                </c:when>
+
+                                <c:otherwise>
+                                    <div class="item">
+                                </c:otherwise>
+                            </c:choose>
+
+                                <a href="${slider.link}">
+                                    <img class="slide-image" src="../../..${slider.sliderImage}" alt="">
+                                    </a>
+                                    </div>
+
+                        </c:forEach>
+
                     </div>
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
                 </div>
 
             </div>
