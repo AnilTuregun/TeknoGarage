@@ -17,23 +17,9 @@
 	src="${pageContext.request.contextPath}/resources/script/jquery.js"></script>
 
 <tiles:insertAttribute name="includes"></tiles:insertAttribute>
-	<style type="text/css">
-
-		.custab{
-			border: 1px solid #ccc;
-			padding: 5px;
-			margin: 5% 0;
-			box-shadow: 3px 3px 2px #ccc;
-			transition: 0.5s;
-		}
-		.custab:hover{
-			box-shadow: 3px 3px 0px transparent;
-			transition: 0.5s;
-		}
-	</style>
 </head>
 <body>
-<div class="content">
+<div style="background-color: white">
 <tiles:insertAttribute name="content"></tiles:insertAttribute>
 </div>
 <hr/>

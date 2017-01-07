@@ -4,50 +4,83 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
-    <div class="container">
-        <div class="row">
-
-            <form:form action="/addProduct" method="POST" modelAttribute="productForm">
+<div style="background-color:white">
+            <form:form action="/addProduct" method="POST" cssClass="form-horizontal" modelAttribute="productForm">
                 <div class="form-group">
                     <legend>Product Request</legend>
 
 
-                <table border="0">
-                    <tr>
-                        <td colspan="2" align="center"><h2>Order</h2></td>
-                    </tr>
-                    <tr>
-                        <td>User Name:</td>
-                        <td><form:input path="productName" /></td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td><form:input path="productPrice" /></td>
-                    </tr>
-                    <tr>
-                        <td>E-mail:</td>
-                        <td><form:input path="productWeight" /></td>
-                    </tr>
-                    <tr>
-                        <td>E-mail:</td>
-                        <td><form:input path="productLongDesc" /></td>
-                    </tr>
 
-                    <tr>
-                        <td>CategoriName:</td>
-                        <td>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="productPrice">Select Product Categori </label>
+                        <div class="col-md-4">
                             <form:select  path="productcategoriesByProductCategoryId.categoryName">
                                 <form:option value="NONE"> --SELECT--</form:option>
                                 <form:options items="${categoriList}"></form:options>
                             </form:select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center"><input type="submit" value="Add Product" /></td>
-                    </tr>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="productName">Product SKU:</label>
+                            <div class="col-md-4">
+                            <form:input path="productSku" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="productName">Product Name:</label>
+                        <div class="col-md-4">
+                            <form:input path="productName" />
+                        </div>
+                    </div>
 
-                </table>
-            </form:form>
-        </div>
-    </div>
+                    <!-- Password input-->
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" for="productPrice">Product Price </label>
+                    <div class="col-md-4">
+                        <form:input path="productPrice" />
+                    </div>
+                </div>
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" for="productPrice">Product Weight: </label>
+                    <div class="col-md-4">
+                        <form:input path="productWeight" />
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="productPrice">Product Stock: </label>
+                        <div class="col-md-4">
+                            <form:input path="productStock" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="productPrice">Product Description </label>
+                        <div class="col-md-4">
+                            <form:input path="productLongDesc" />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 form-group">
+                        <label class="col-md-4 control-label" for="productImage">Product Image</label>
+                        <div class="col-sm-4">
+                            <form:input type="file" path="productImage" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="productPrice">Product Tags: </label>
+                        <div class="col-md-4">
+                            <form:input path="productTags" />
+                        </div>
+                    </div>
+
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="saveBtn"></label>
+                        <div class="col-md-8">
+                            <button id="saveBtn" type="submit" name="button1id" class="btn btn-success">Save</button>
+                            <button id="cancelBtn" name="button2id" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                </form:form>
+
+
+</div>

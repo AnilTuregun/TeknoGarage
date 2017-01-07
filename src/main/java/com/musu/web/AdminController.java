@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +78,9 @@ ProductsEntity a=new ProductsEntity();
         ProductsEntity newProduct = new ProductsEntity();
         newProduct.setProductName(productsEntity.getProductName());
         newProduct.setProductLongDesc(productsEntity.getProductLongDesc());
-        newProduct.setProductcategoriesByProductCategoryId(productsEntity.getProductcategoriesByProductCategoryId());
+        ProductcategoriesEntity productcategoriesEntity=categoryService.findCategoryByName(product.getProductcategoriesByProductCategoryId().getCategoryName());
+        newProduct.setProductcategoriesByProductCategoryId(productcategoriesEntity);
+        newProduct.setProductImage(product.getProductImage());
         productService.save(newProduct);
         return "/adminpanel/productlist";
     }
