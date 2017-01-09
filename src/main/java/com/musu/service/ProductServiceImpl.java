@@ -50,4 +50,10 @@ public class ProductServiceImpl implements ProductService {
     public ProductsEntity findByName(String name) {
         return  productsRepository.findByName(name);
     }
+
+    @Override
+    public void deleteProduct(int id) {
+        productsRepository.deleteProduct(id);
+
+    }
 }

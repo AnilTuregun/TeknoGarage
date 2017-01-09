@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = {"/review/{productName}"}, method = RequestMethod.POST)
-    public String searchproduct(@RequestParam("comment") String comment, Model model,@PathVariable("productName")String productName) {
+    public String addReview(@RequestParam("comment") String comment, Model model,@PathVariable("productName")String productName) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
 

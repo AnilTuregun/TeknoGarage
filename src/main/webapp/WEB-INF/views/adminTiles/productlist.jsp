@@ -55,8 +55,7 @@
                 <td>${product.productLive}</td>
                 <td>${product.productUnlimited}</td>
                 <td>${product.productTags}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-
+                <td class="text-center"><a class='btn btn-info btn-xs' href="/adminPanel/editProduct/${product.productName}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/deleteProduct/${product.productName}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
             </tr>
             </c:forEach>
         </table>

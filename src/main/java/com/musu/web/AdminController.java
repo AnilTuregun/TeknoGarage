@@ -1,6 +1,7 @@
 package com.musu.web;
 
 import com.musu.model.*;
+import com.musu.repository.ProductsRepository;
 import com.musu.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,6 +22,8 @@ import java.util.List;
 
 @Controller
 public class AdminController {
+    @Autowired
+    private ProductsRepository productsRepository;
     @Autowired
     private CartService cartService;
     @Autowired
@@ -74,16 +78,41 @@ ProductsEntity a=new ProductsEntity();
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("productForm") ProductsEntity product, BindingResult result, Model model) {
 
-  ProductsEntity productsEntity=product;
-        ProductsEntity newProduct = new ProductsEntity();
-        newProduct.setProductName(productsEntity.getProductName());
-        newProduct.setProductLongDesc(productsEntity.getProductLongDesc());
+        ProductsEntity productsEntity=product;
         ProductcategoriesEntity productcategoriesEntity=categoryService.findCategoryByName(product.getProductcategoriesByProductCategoryId().getCategoryName());
-        newProduct.setProductcategoriesByProductCategoryId(productcategoriesEntity);
-        newProduct.setProductImage(product.getProductImage());
-        productService.save(newProduct);
-        return "/adminpanel/productlist";
+        productsEntity.setProductcategoriesByProductCategoryId(productcategoriesEntity);
+        productService.save(productsEntity);
+
+        return "redirect:/adminpanel/productlist";
     }
 
+@RequestMapping(value ="/deleteProduct/{productSKU}")
+    public String deleteProduct(@PathVariable("productSKU") String pName,Model model){
+    ProductsEntity productsEntity=productService.findByName(pName);
+    int pId=productsEntity.getProductId();
+    productService.deleteProduct(pId);
+    List<ProductsEntity> productEntityList = productService.findAll();
+    model.addAttribute("products",productEntityList);
+    return "productlist";
+}
+    @RequestMapping(value = "/adminPanel/editProduct/{productName}",method = RequestMethod.GET)
+    public String updateProduct(Model model,@PathVariable("productName") String pName) {
+        List<ProductcategoriesEntity> categori=categoryService.findAll();
+        List<String> categoriName = new ArrayList<>();
+        for(int i=0;i<categori.size();i++){
+            categoriName.add(categori.get(i).getCategoryName());
+        }
+        model.addAttribute("categoriList",categoriName);
+        ProductsEntity productsEntity=productService.findByName(pName);
+        model.addAttribute("editproductForm",productsEntity);
+        return "editProduct";
+    }
 
+    @RequestMapping(value = "/adminPanel/editProduct",method = RequestMethod.POST)
+    public String updateProduct1(@ModelAttribute("editproductForm") ProductsEntity product, BindingResult result, Model model) {
+       int id=product.getProductId();
+        productService.save(product);
+        productService.deleteProduct(id);
+        return "editProduct";
+    }
 }

@@ -5,7 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="col-md-10 ">
-            <form:form action="/addProduct" method="POST" cssClass="form-horizontal" modelAttribute="productForm">
+            <form:form action="/adminPanel/editProduct" method="POST" cssClass="form-horizontal" modelAttribute="editproductForm">
                 <div class="form-group">
                     <legend>Product Request</legend>
 
@@ -61,7 +61,7 @@
                     <div class="col-lg-12 form-group">
                         <label class="col-md-4 control-label" for="productImage">Product Image</label>
                         <div class="col-sm-4">
-                            <form:input type="file" path="productImage" />
+                            <form:input type="file" path="productImage"/>
                         </div>
                     </div>
                     <div class="form-group">

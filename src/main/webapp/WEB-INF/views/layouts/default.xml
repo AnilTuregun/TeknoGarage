@@ -21,6 +21,13 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"></put-attribute>
 	</definition>
 	<definition name="musu.base" template="/WEB-INF/views/templates/base.jsp">
+	<put-attribute name="includes" value=""></put-attribute>
+	<put-attribute name="title" value="Offers Homepage"></put-attribute>
+	<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp"></put-attribute>
+	<put-attribute name="content" value="/WEB-INF/views/tiles/content.jsp"></put-attribute>
+	<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"></put-attribute>
+</definition>
+	<definition name="musu.base2" template="/WEB-INF/views/templates/base2.jsp">
 		<put-attribute name="includes" value=""></put-attribute>
 		<put-attribute name="title" value="Offers Homepage"></put-attribute>
 		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp"></put-attribute>
@@ -96,9 +103,13 @@
 		<put-attribute name="title" value="Product List"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/adminTiles/adminpanel.jsp"></put-attribute>
 	</definition>
-	<definition name="addProduct" extends="musu.base">
+	<definition name="addProduct" extends="musu.base2">
+	<put-attribute name="title" value="Product List"></put-attribute>
+	<put-attribute name="content" value="/WEB-INF/views/adminTiles/addProduct.jsp"></put-attribute>
+</definition>
+	<definition name="editProduct" extends="musu.base2">
 		<put-attribute name="title" value="Product List"></put-attribute>
-		<put-attribute name="content" value="/WEB-INF/views/adminTiles/addProduct.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/adminTiles/updatePage.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>
 
