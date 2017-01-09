@@ -23,6 +23,10 @@ public interface ProductsRepository extends JpaRepository<ProductsEntity, Long>{
     @Query("select p from ProductsEntity p where p.productTags like LOWER(CONCAT('%',:tags, '%'))")
     List<ProductsEntity> searchProductContaining(@Param("tags")String name);
 
+    @Transactional
+    @Modifying
+    @Query("UPDATE ProductsEntity p SET p.productName=:pName,p.productLongDesc=:pDesc,p.productImage=:pImg,p.productStock=:pStock,p.productPrice=:pPrice,p.productTags=:pTag WHERE p.productId = :pId")
+    int updateProduct( @Param("pName") String Name,@Param("pDesc") String pDesc,@Param("pImg") String pImg,@Param("pStock")double pStok,@Param("pPrice") double pPrice,@Param("pTag") String pTag);
 
     @Transactional
     @Modifying

@@ -14,4 +14,5 @@ public interface ProductService {
     List<ProductsEntity> searchProduct(String name);
     ProductsEntity findByName(String name);
     void deleteProduct(int id);
+    void editProduct(ProductsEntity productsEntity);
 }

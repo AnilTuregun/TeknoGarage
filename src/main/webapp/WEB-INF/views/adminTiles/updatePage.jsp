@@ -5,10 +5,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="col-md-10 ">
-            <form:form action="/adminPanel/editProduct" method="POST" cssClass="form-horizontal" modelAttribute="editproductForm">
+            <form:form action="/adminPanel/editProduct" method="post" cssClass="form-horizontal" modelAttribute="editproductForm">
                 <div class="form-group">
                     <legend>Product Request</legend>
 
+                        <div class="col-md-4">
+                            <form:hidden path="productId" />
+                        </div>
 
 
                     <div class="form-group">
@@ -26,6 +29,7 @@
                             <form:input path="productSku" />
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="productName">Product Name:</label>
                         <div class="col-md-4">
@@ -60,6 +64,9 @@
                     </div>
                     <div class="col-lg-12 form-group">
                         <label class="col-md-4 control-label" for="productImage">Product Image</label>
+                        <div class="col-sm-4">
+                            <img name="img1" src="${editproductForm.productImage}" alt="" style="width: 35px; height: 35px;"/>
+                    </div>
                         <div class="col-sm-4">
                             <form:input type="file" path="productImage"/>
                         </div>
