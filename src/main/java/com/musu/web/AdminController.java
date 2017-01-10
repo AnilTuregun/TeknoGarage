@@ -2,6 +2,7 @@ package com.musu.web;
 
 import com.musu.model.*;
 import com.musu.repository.ProductsRepository;
+import com.musu.repository.UserRepository;
 import com.musu.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,6 +36,8 @@ public class AdminController {
     private OrderService orderService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
     private int productId;
 
 
@@ -44,6 +47,34 @@ public class AdminController {
         model.addAttribute("products",productEntityList);
         return "productlist";
     }
+    @RequestMapping(value = {"/adminpanel/userlist"},method = RequestMethod.GET)
+    public String showUsers(Model model,HttpSession session) {
+        List<User> userList = userService.findAll();
+        model.addAttribute("users",userList);
+        return "userlist";
+    }
+    @RequestMapping(value = {"/adminpanel/commentList"},method = RequestMethod.GET)
+    public String showComment(Model model,HttpSession session) {
+        List<Reviews> reviewsList=reviewService.findAll();
+        model.addAttribute("comments",reviewsList);
+        return "comments";
+    }
+    @RequestMapping(value ="/deleteComment/{commentId}")
+    public String deleteComment(@PathVariable("commentId") int id,Model model){
+       Reviews reviews=reviewService.findReview(id);
+        reviewService.deleteComment(reviews.getId());
+        List<Reviews> reviewsList=reviewService.findAll();
+        model.addAttribute("comments",reviewsList);
+        return "comments";
+    }
+    @RequestMapping(value ="/deleteUser/{userName}")
+    public String deleteUser(@PathVariable("userName") String userName,Model model){
+      User user=userRepository.findByUsername(userName);
+     userService.deleteUser(user.getId());
+        List<User> userList = userService.findAll();
+        model.addAttribute("users",userList);
+        return "userlist";
+    }
     @RequestMapping(value = {"/adminpanel"},method = RequestMethod.GET)
     public String showAdminPanel(Model model,HttpSession session) {
         List<OrdersEntity> orders= orderService.findAll();
@@ -52,11 +83,6 @@ public class AdminController {
         model.addAttribute("review",reviews);
         model.addAttribute("order",orders);
         model.addAttribute("user",users);
-
-
-
-ProductsEntity a=new ProductsEntity();
-
 
         return "adminpanel";
 }
@@ -85,8 +111,8 @@ ProductsEntity a=new ProductsEntity();
         return "redirect:/adminpanel/productlist";
     }
 
-@RequestMapping(value ="/deleteProduct/{productSKU}")
-    public String deleteProduct(@PathVariable("productSKU") String pName,Model model){
+@RequestMapping(value ="/deleteProduct/{productName}")
+    public String deleteProduct(@PathVariable("productName") String pName,Model model){
     ProductsEntity productsEntity=productService.findByName(pName);
     int pId=productsEntity.getProductId();
     productService.deleteProduct(pId);

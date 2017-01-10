@@ -45,7 +45,7 @@ public class CategoriController {
         return "categories";
     }
 
-    @RequestMapping(value = {"/{name}"})
+    @RequestMapping(value = {"/category/{name}"})
     public String showcategories2(@PathVariable("name")String name,Model model) {
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         ProductcategoriesEntity category=categoryService.findCategoryByName(name);

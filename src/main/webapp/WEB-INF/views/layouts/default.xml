@@ -76,7 +76,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/tiles/cart.jsp"></put-attribute>
 		<put-attribute name="left_content" value="/WEB-INF/views/tiles/category.jsp"></put-attribute>
 	</definition>
-	<definition name="userlist" extends="musu.default">
+	<definition name="userslist" extends="musu.default">
 		<put-attribute name="title" value="Login Deneme"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/adminTiles/userslist.jsp"></put-attribute>
 	</definition>
@@ -92,6 +92,15 @@
 	<definition name="productlist" extends="musu.admintemp">
 		<put-attribute name="title" value="Product List"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/adminTiles/productlist.jsp"></put-attribute>
+	</definition>
+
+	<definition name="userlist" extends="musu.admintemp">
+		<put-attribute name="title" value="Product List"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/adminTiles/userlist.jsp"></put-attribute>
+	</definition>
+	<definition name="comments" extends="musu.admintemp">
+		<put-attribute name="title" value="Product List"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/adminTiles/comment.jsp"></put-attribute>
 	</definition>
 
 	<definition name="searchProduct" extends="musu.default2">

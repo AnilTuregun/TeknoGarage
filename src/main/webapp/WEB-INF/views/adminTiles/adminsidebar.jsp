@@ -14,8 +14,8 @@
     </form>
     <ul class="nav menu">
         <li class="active"><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
-        <li><a href="widgets.html"><svg class="glyph stroked male user"><use xlink:href="#stroked-male-user"></use></svg> Users</a></li>
-        <li><a href="charts.html"><svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg> Comments</a></li>
+        <li><a href="<c:url value='/adminpanel/userlist'/>"><svg class="glyph stroked male user"><use xlink:href="#stroked-male-user"></use></svg> Users</a></li>
+        <li><a href="<c:url value='/adminpanel/commentList' />"><svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg> Comments</a></li>
         <li><a href="<c:url value='/adminpanel/productlist' />"><svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg> Products</a></li>
         <li><a href="forms.html"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Messages</a></li>
         <li><a href="panels.html"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Orders</a></li>
