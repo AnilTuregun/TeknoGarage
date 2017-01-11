@@ -7,12 +7,17 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "orderdetails", schema = "mydatabase", catalog = "")
-public class OrderdetailsEntity {
+public class OrderDetailsEntity {
     private int detailId;
     private String detailName;
     private double detailPrice;
     private String detailSku;
     private int detailQuantity;
+    private int detailOrderId;
+    private int detailProductId;
+  private  OrdersEntity ordersEntity;
+    private ProductsEntity productsEntity;
+
 
     @Id
     @Column(name = "DetailID")
@@ -64,12 +69,31 @@ public class OrderdetailsEntity {
         this.detailQuantity = detailQuantity;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "DetailOrderID", referencedColumnName = "OrderID", nullable = false)
+    public OrdersEntity getOrdersEntity() {
+        return ordersEntity;
+    }
+    public void setOrdersEntity(OrdersEntity ordersEntity) {
+        this.ordersEntity = ordersEntity;
+    }
+    @ManyToOne
+    @JoinColumn(name = "DetailProductID", referencedColumnName = "ProductID", nullable = false)
+
+    public ProductsEntity getProductsEntity() {
+        return productsEntity;
+    }
+
+    public void setProductsEntity(ProductsEntity productsEntity) {
+        this.productsEntity = productsEntity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrderdetailsEntity that = (OrderdetailsEntity) o;
+        OrderDetailsEntity that = (OrderDetailsEntity) o;
 
         if (detailId != that.detailId) return false;
         if (Double.compare(that.detailPrice, detailPrice) != 0) return false;
@@ -92,4 +116,7 @@ public class OrderdetailsEntity {
         result = 31 * result + detailQuantity;
         return result;
     }
+
+
+
 }

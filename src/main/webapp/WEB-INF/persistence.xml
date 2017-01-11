@@ -5,7 +5,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>com.musu.model.OptiongroupsEntity</class>
         <class>com.musu.model.OptionsEntity</class>
-        <class>com.musu.model.OrderdetailsEntity</class>
+        <class>com.musu.model.OrderDetailsEntity</class>
         <class>com.musu.model.OrdersEntity</class>
         <class>com.musu.model.ProductcategoriesEntity</class>
         <class>com.musu.model.ProductoptionsEntity</class>

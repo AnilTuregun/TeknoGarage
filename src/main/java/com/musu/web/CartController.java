@@ -3,7 +3,6 @@ package com.musu.web;
         import com.musu.model.*;
         import com.musu.service.*;
         import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.http.HttpRequest;
         import org.springframework.security.core.context.SecurityContextHolder;
         import org.springframework.security.core.userdetails.UserDetails;
         import org.springframework.stereotype.Controller;
@@ -23,6 +22,8 @@ public class CartController {
     private OrderService orderService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderDetailsService orderDetailsService;
     @Autowired
     private CartService cartService;
     @Autowired
@@ -114,7 +115,7 @@ public class CartController {
     }
 
     @RequestMapping(value = {"/checkOut"},method = RequestMethod.POST)
-    public String registerCheckOut(@ModelAttribute("order") OrdersEntity ordersEntity) {
+    public String registerCheckOut(@ModelAttribute("order") OrdersEntity ordersEntity,@ModelAttribute("orderdetails") OrderDetailsEntity orderDetailsEntity) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
 
@@ -126,7 +127,21 @@ public class CartController {
         User user=userService.findByUsername(username);
     OrdersEntity ordersEntity1=ordersEntity;
         ordersEntity.setUserId(user);
+        List<ShoppingCart> c=cartService.findCartByUser(username);
+OrderDetailsEntity orderDetailsEntity1 =orderDetailsEntity ;
+
    orderService.save(ordersEntity1);
+
+        for (int i=0;i<c.size();i++){
+            orderDetailsEntity1.setOrdersEntity(ordersEntity1);
+            orderDetailsEntity1.setProductsEntity(c.get(i).getProduct());
+            orderDetailsEntity1.setDetailName(c.get(i).getProduct().getProductName());
+            orderDetailsEntity1.setDetailQuantity(c.get(i).getQuantity());
+            orderDetailsEntity1.setDetailPrice(c.get(i).getProduct().getProductPrice());
+            orderDetailsEntity1.setDetailSku(c.get(i).getProduct().getProductSku());
+            orderDetailsService.save(orderDetailsEntity1);
+        }
+
         return "redirect:/home";
     }
 }

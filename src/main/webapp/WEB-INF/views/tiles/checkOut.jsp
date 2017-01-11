@@ -12,6 +12,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div align="center">
+
+
+
+
+
+
+
+
+
     <form:form action="/checkOut" method="POST" modelAttribute="order">
         <table border="0">
             <tr>
