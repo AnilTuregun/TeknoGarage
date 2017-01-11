@@ -9,5 +9,9 @@ public interface ReviewService {
     void save(Reviews reviews);
     List<Reviews> findAll();
     List<Reviews> findReviewsByProductId(int id);
+    void deleteComment(int id);
+    Reviews findById(int id);
+    Reviews findReview(int id);
+
 
 }
