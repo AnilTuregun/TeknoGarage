@@ -63,7 +63,7 @@
                     <span class="item-left">
                         <img src="/resources/image/orderIcon.png" alt="" />
                         <span class="item-info">
-                            <span>MyOrders</span>
+                              <a href="/myOrders">My Orders</a>
                         </span>
                     </span>
                 </span>

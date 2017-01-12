@@ -8,7 +8,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 public class User {
-    private Long id;
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -27,16 +27,20 @@ public class User {
     private Integer userPhone;
     private String userAdress;
     private Set<OrdersEntity> ordersEntities;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    public Long getId() {
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
+
+
 
     @Basic
     @Column(name = "username")
@@ -220,7 +224,7 @@ public class User {
 
         User user = (User) o;
 
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
@@ -242,22 +246,5 @@ public class User {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (userFirstname != null ? userFirstname.hashCode() : 0);
-        result = 31 * result + (userLastname != null ? userLastname.hashCode() : 0);
-        result = 31 * result + (userCity != null ? userCity.hashCode() : 0);
-        result = 31 * result + (userState != null ? userState.hashCode() : 0);
-        result = 31 * result + (userZip != null ? userZip.hashCode() : 0);
-        result = 31 * result + (userEmailVerified != null ? userEmailVerified.hashCode() : 0);
-        result = 31 * result + (userRegistrationDate != null ? userRegistrationDate.hashCode() : 0);
-        result = 31 * result + (userVerificationCode != null ? userVerificationCode.hashCode() : 0);
-        result = 31 * result + (userPhone != null ? userPhone.hashCode() : 0);
-        result = 31 * result + (userAdress != null ? userAdress.hashCode() : 0);
-        return result;
-    }
+
 }

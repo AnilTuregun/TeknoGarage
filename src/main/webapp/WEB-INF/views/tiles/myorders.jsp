@@ -8,17 +8,19 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div align="center">
-    <c:forEach var="order" items="${orders}">
+
     <table>
 
         <tr>
             <th>Order Number</th>
             <th>Date</th>
         </tr>
+        <c:forEach var="order" items="${orders}">
         <tr>
-            <td>${order.orderId}</td>
+            <td><a href="/myOrders/${order.orderId}">${order.orderId}</a> </td>
             <td>${order.orderDate} </td>
         </tr>
+        </c:forEach>
     </table>
 
 
@@ -26,8 +28,8 @@
 
 
 
-        </c:forEach>
-    
+
+
 
 
 </div>

@@ -9,10 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -31,7 +28,8 @@ public class HomeController {
     private UserService userService;
     @Autowired
     private OrderService orderService;
-
+    @Autowired
+    private OrderDetailsService orderDetailsService;
 
     @RequestMapping(value = {"/home"})
     public String showhome(Model model,HttpSession session) {
@@ -68,7 +66,7 @@ public class HomeController {
         return "home";
     }
         @RequestMapping(value = {"/myOrders"})
-    public String showorderDetails (Model model,HttpSession session){
+    public String showOrders (Model model,HttpSession session){
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             String username;
 
@@ -87,4 +85,13 @@ public class HomeController {
 
             return "myorders";
         }
-}
+    @RequestMapping(value = {"/myOrders/{OrderID}"})
+        public  String showOrderDetails (@PathVariable("OrderID") int orderID,Model model){
+
+            List<OrderDetailsEntity> orderDetailsEntities=orderDetailsService.findDetailsbyOrderID(orderID);
+            model.addAttribute("orderDetails",orderDetailsEntities);
+
+            return "orderdetails";
+        }
+    }
+
