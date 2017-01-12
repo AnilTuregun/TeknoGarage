@@ -10,12 +10,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
+<div class="col-lg-6" ></div>
+<legend>Account Page</legend>
 <div class="container">
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="/account" modelAttribute="userForm" method="post">
         <fieldset>
 
             <!-- Form Name -->
-            <legend>My Profile-> user profile->exhibition</legend>
+
 
             <!-- Text input-->
             <div class="form-group">
@@ -39,12 +41,26 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="textinput">Email:</label>
                 <div class="col-md-4">
-                    <input id="te" name="textinput"  type="text" placeholder="host" class="form-control input-md" value="${user.email}">
+                    <input id="te2" name="textinput"  type="text" placeholder="host" class="form-control input-md" value="${user.email}">
 
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">City:</label>
+                <div class="col-md-4">
+                    <input id="te1" name="textinput"  type="text" placeholder="host" class="form-control input-md" value="${user.userCity}">
 
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Email:</label>
+                <div class="col-md-4">
+                    <input id="te" name="textinput"  type="text" placeholder="host" class="form-control input-md" value="${user.userState}">
+
+                </div>
+            </div>
 
             <!-- Textarea -->
             <div class="form-group">
@@ -60,7 +76,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="singlebutton"></label>
                 <div class="col-md-4">
-                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">submit</button>
+                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Edit Account</button>
                 </div>
             </div>
 
@@ -68,56 +84,10 @@
     </form>
 
 </div>
-<div class="container-fluid">
-    <div class="col-md-12 product-info">
-        <ul id="myTab" class="nav nav-tabs nav_tabs">
+<div class="col-lg-6">
+    <form class="form-horizontal">
 
-            <li class="active"><a href="#service-one" data-toggle="tab">Orders</a></li>
-            <li><a href="#service-three" data-toggle="tab">ShoppingCart</a></li>
-
-        </ul>
-        <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade in active" id="service-one">
-
-                <section class="container product-info">
-                    <div class="col-lg-6">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th class="text-center">Price</th>
-                                <th class="text-center">Total</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="orders" items="${user.ordersEntities}">
-                                <tr class="productRow">
-
-                                    <td class="col-sm-8 col-md-6">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="#">${orders.orderEmail}</a></h4>
-
-                                                <span>Status: </span><span class="text-success"><strong>In Stock=${orders.orderAmount}</strong></span>
-                                            </div>
-                                        </div></td>
-                                </tr>
-                            </c:forEach>
-
-                            </tbody>
-                        </table>Your Orders</div>
-                </section>
-
-            </div>
-
-            <div class="tab-pane fade" id="service-three">
-               ShoppinCart
-        </div>
-        </div>
-        <hr>
-    </div>
+    </form>
 </div>
 
 <!-- jQuery -->

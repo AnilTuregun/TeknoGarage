@@ -20,8 +20,17 @@ public interface ProductsRepository extends JpaRepository<ProductsEntity, Long>{
     @Query("select p from ProductsEntity p where p.productName = ?1")
     ProductsEntity findByName(String name);
 
+    @Query("select p from ProductsEntity p where p.productTags like LOWER(CONCAT('%',:tags, '%')) ORDER BY p.productPrice desc")
+    List<ProductsEntity> findByNameOrderDesc(@Param("tags")String name);
+
+    @Query("select p from ProductsEntity p where p.productTags like LOWER(CONCAT('%',:tags, '%')) ORDER BY p.productPrice asc ")
+    List<ProductsEntity> findByNameOrderAsc(@Param("tags")String name);
+
     @Query("select p from ProductsEntity p where p.productTags like LOWER(CONCAT('%',:tags, '%'))")
     List<ProductsEntity> searchProductContaining(@Param("tags")String name);
+
+    @Query("SELECT p FROM ProductsEntity p ORDER BY p.productPrice desc")
+    List<ProductsEntity> findAllDesc();
 
     @Transactional
     @Modifying

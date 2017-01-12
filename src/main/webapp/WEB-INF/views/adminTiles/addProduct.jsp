@@ -30,6 +30,7 @@
                         <label class="col-md-4 control-label" for="productName">Product Name:</label>
                         <div class="col-md-4">
                             <form:input path="productName" />
+                            <form:errors path="productName"></form:errors>
                         </div>
                     </div>
 

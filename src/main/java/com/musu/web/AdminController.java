@@ -4,6 +4,7 @@ import com.musu.model.*;
 import com.musu.repository.ProductsRepository;
 import com.musu.repository.UserRepository;
 import com.musu.service.*;
+import com.musu.validator.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,8 @@ public class AdminController {
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ProductValidator productValidator;
     private int productId;
 
 
@@ -102,10 +105,18 @@ public class AdminController {
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("productForm") ProductsEntity product, BindingResult result, Model model) {
-
+          productValidator.validate(product,result);
+        if (result.hasErrors()) {
+            return "addProduct";
+        }
         ProductsEntity productsEntity=product;
         ProductcategoriesEntity productcategoriesEntity=categoryService.findCategoryByName(product.getProductcategoriesByProductCategoryId().getCategoryName());
         productsEntity.setProductcategoriesByProductCategoryId(productcategoriesEntity);
+
+        String input = productsEntity.getProductImage();
+        int lastIndexOfSlash = input.lastIndexOf('/');
+        String result1 = input.substring(0, lastIndexOfSlash + 1) + "resources/image/" + input.substring(lastIndexOfSlash + 1);
+        productsEntity.setProductImage(result1);
         productService.save(productsEntity);
 
         return "redirect:/adminpanel/productlist";
