@@ -19,9 +19,16 @@ public class OrderServiceImpl implements OrderService {
     public void save(OrdersEntity ordersEntity) {
         ordersRepository.save(ordersEntity);
     }
-
+    @Override
+    public void saveAndFlush(OrdersEntity or){ordersRepository.saveAndFlush(or);}
     @Override
     public List<OrdersEntity> findAll() {
         return ordersRepository.findAll();
+    }
+
+
+    @Override
+    public List<OrdersEntity> findOrdersbyUsername(String name) {
+        return ordersRepository.findOrdersbyUsername(name);
     }
 }

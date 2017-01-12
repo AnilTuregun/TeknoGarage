@@ -130,15 +130,17 @@ public class CartController {
         List<ShoppingCart> c=cartService.findCartByUser(username);
 OrderDetailsEntity orderDetailsEntity1 =orderDetailsEntity ;
 
-   orderService.save(ordersEntity1);
+   orderService.saveAndFlush(ordersEntity1);
 
-        for (int i=0;i<c.size();i++){
+        for (ShoppingCart aC : c) {
+
             orderDetailsEntity1.setOrdersEntity(ordersEntity1);
-            orderDetailsEntity1.setProductsEntity(c.get(i).getProduct());
-            orderDetailsEntity1.setDetailName(c.get(i).getProduct().getProductName());
-            orderDetailsEntity1.setDetailQuantity(c.get(i).getQuantity());
-            orderDetailsEntity1.setDetailPrice(c.get(i).getProduct().getProductPrice());
-            orderDetailsEntity1.setDetailSku(c.get(i).getProduct().getProductSku());
+
+            orderDetailsEntity1.setProductsEntity(aC.getProduct());
+            orderDetailsEntity1.setDetailName(aC.getProduct().getProductName());
+            orderDetailsEntity1.setDetailQuantity(aC.getQuantity());
+            orderDetailsEntity1.setDetailPrice(aC.getProduct().getProductPrice());
+            orderDetailsEntity1.setDetailSku(aC.getProduct().getProductSku());
             orderDetailsService.save(orderDetailsEntity1);
         }
 

@@ -27,16 +27,35 @@
                 <td colspan="2" align="center"><h2>Order</h2></td>
             </tr>
             <tr>
-                <td>User Name:</td>
+                <td>Full Name:</td>
                 <td><form:input path="orderShipName" /></td>
             </tr>
             <tr>
-                <td>Password:</td>
+                <td>Amount:</td>
                 <td><form:input path="orderAmount" /></td>
             </tr>
             <tr>
                 <td>E-mail:</td>
                 <td><form:input path="orderEmail" /></td>
+            </tr>
+            <tr>
+                <td>Address Line:</td>
+                <td><form:input path="orderShipAddress" /></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><form:input path="orderCity" /></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td><form:input path="orderState" /></td>
+            </tr> <tr>
+            <td>Zip:</td>
+            <td><form:input path="orderZip" /></td>
+        </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><form:input path="orderPhone" /></td>
             </tr>
 
             <tr>

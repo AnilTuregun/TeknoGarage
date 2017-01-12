@@ -14,7 +14,7 @@ public class Slider {
     private String SliderImage;
     private String Link;
     private int Active;
-
+    private ProductsEntity productsEntity;
     private String SliderName;
     private int SliderPosition;
 
@@ -77,5 +77,18 @@ public class Slider {
 
     public void setActive(int active) {
         Active = active;
+    }
+
+
+
+    @OneToOne
+    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", nullable = false)
+
+    public ProductsEntity getProductsEntity() {
+        return productsEntity;
+    }
+
+    public void setProductsEntity(ProductsEntity productsEntity) {
+        this.productsEntity = productsEntity;
     }
 }

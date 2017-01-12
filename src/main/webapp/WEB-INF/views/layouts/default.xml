@@ -120,6 +120,10 @@
 		<put-attribute name="title" value="Product List"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/adminTiles/updatePage.jsp"></put-attribute>
 	</definition>
+	<definition name="myorders" extends="musu.default2">
+		<put-attribute name="title" value="Product List"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/tiles/myorders.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
 
 

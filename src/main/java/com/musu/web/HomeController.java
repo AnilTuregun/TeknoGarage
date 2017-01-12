@@ -27,6 +27,11 @@ public class HomeController {
     private CategoryService categoryService;
     @Autowired
     private SliderService sliderService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private OrderService orderService;
+
 
     @RequestMapping(value = {"/home"})
     public String showhome(Model model,HttpSession session) {
@@ -62,5 +67,24 @@ public class HomeController {
         model.addAttribute("sliders",sliderList );
         return "home";
     }
+        @RequestMapping(value = {"/myOrders"})
+    public String showorderDetails (Model model,HttpSession session){
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String username;
 
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails)principal).getUsername();
+            } else {
+                username = principal.toString();
+            }
+            User user=userService.findByUsername(username);
+
+            List<OrdersEntity> ordersEntities=orderService.findOrdersbyUsername(username);
+            model.addAttribute("orders",ordersEntities);
+
+
+
+
+            return "myorders";
+        }
 }

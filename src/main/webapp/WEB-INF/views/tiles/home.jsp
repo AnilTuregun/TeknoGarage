@@ -48,9 +48,19 @@
                         </c:otherwise>
                         </c:choose>
 
-                        <a href="${slider.link}">
+                        <a href="${slider.productsEntity.productcategoriesByProductCategoryId.categoryName}/${slider.productsEntity.productName}">
                             <img class="slide-image" src="../../..${slider.sliderImage}" alt="">
+                            <span style="
+    /* position: absolute; */
+    left: 500px;
+    top: 220px;
+    position: absolute;
+    color: red;
+    font-size: x-large;
+    /* right: 600px; */
+">  ${slider.productsEntity.productPrice}</span>
                         </a>
+
                     </div>
 
                     </c:forEach>

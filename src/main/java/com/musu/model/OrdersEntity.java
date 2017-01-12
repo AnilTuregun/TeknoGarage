@@ -23,6 +23,7 @@ public class OrdersEntity {
     private byte orderShipped;
     private String orderTrackingNumber;
     private User userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "OrderID")
     public int getOrderId() {

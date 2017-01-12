@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface OrderService {
     void save(OrdersEntity ordersEntity);
+    void saveAndFlush(OrdersEntity or);
+
+    List<OrdersEntity> findOrdersbyUsername(String name);
     List<OrdersEntity> findAll();
 }
