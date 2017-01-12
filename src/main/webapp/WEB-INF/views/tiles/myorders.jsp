@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Ortayol
@@ -7,7 +8,26 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div align="center">
+    <c:forEach var="order" items="${orders}">
+    <table>
 
+        <tr>
+            <th>Order Number</th>
+            <th>Date</th>
+        </tr>
+        <tr>
+            <td>${order.orderId}</td>
+            <td>${order.orderDate} </td>
+        </tr>
+    </table>
+
+
+
+
+
+
+        </c:forEach>
+    
 
 
 </div>
