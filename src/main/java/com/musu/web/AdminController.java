@@ -4,6 +4,7 @@ import com.musu.model.*;
 import com.musu.repository.ProductsRepository;
 import com.musu.repository.UserRepository;
 import com.musu.service.*;
+import com.musu.validator.ProductEditValidator;
 import com.musu.validator.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,6 +42,8 @@ public class AdminController {
     private UserRepository userRepository;
     @Autowired
     private ProductValidator productValidator;
+    @Autowired
+    private ProductEditValidator productEditValidator;
     private int productId;
 
 
@@ -106,6 +109,7 @@ public class AdminController {
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("productForm") ProductsEntity product, BindingResult result, Model model) {
           productValidator.validate(product,result);
+        ProductsEntity productsEntity1=productService.findBySkuNumber(product.getProductSku());
         if (result.hasErrors()) {
             return "addProduct";
         }
@@ -132,7 +136,7 @@ public class AdminController {
     return "productlist";
 }
     @RequestMapping(value = "/adminPanel/editProduct/{productName}",method = RequestMethod.GET)
-    public String updateProduct(Model model,@PathVariable("productName") String pName) {
+    public String updateProduct(Model model,@PathVariable("productName") String pName,HttpSession session) {
         List<ProductcategoriesEntity> categori=categoryService.findAll();
         List<String> categoriName = new ArrayList<>();
         for(int i=0;i<categori.size();i++){
@@ -141,20 +145,39 @@ public class AdminController {
         model.addAttribute("categoriList",categoriName);
         ProductsEntity productsEntity=productService.findByName(pName);
         model.addAttribute("editproductForm",productsEntity);
+        session.setAttribute("skuNumber",productsEntity.getProductSku());
+        session.setAttribute("productImg",productsEntity.getProductImage());
         return "editProduct";
     }
 
     @RequestMapping(value = "/adminPanel/editProduct",method = RequestMethod.POST)
-    public String updateProduct1(@ModelAttribute("editproductForm") ProductsEntity product, BindingResult result, Model model) {
+    public String updateProduct1(@ModelAttribute("editproductForm") ProductsEntity product, BindingResult result, Model model,HttpSession session) {
+        productEditValidator.validate(product,result);
       int id=product.getProductId();
-
+        if (result.hasErrors()) {
+            return "editProduct";
+        }
+        if((!product.getProductSku().equals(session.getAttribute("skuNumber")))&&(productService.findBySkuNumber(product.getProductSku())!=null))
+        {
+            result.rejectValue("productSku", "Duplicate.productForm.productSku");
+        }
+        String img=product.getProductImage();
+        if(img.equals("")){
+            String productImg=(String) session.getAttribute("productImg") ;
+            product.setProductImage(productImg);
+        }
+            else {
+            int lastIndexOfSlash = img.lastIndexOf('/');
+                    String result1 = img.substring(0, lastIndexOfSlash + 1) + "resources/image/" + img.substring(lastIndexOfSlash + 1);
+                     product.setProductImage(result1);
+        }
         ProductsEntity productsEntity=product;
         ProductcategoriesEntity productcategoriesEntity=categoryService.findCategoryByName(product.getProductcategoriesByProductCategoryId().getCategoryName());
         productsEntity.setProductcategoriesByProductCategoryId(productcategoriesEntity);
         productsEntity.setProductcategoriesByProductCategoryId(productcategoriesEntity);
         productService.save(product);
 
-        return "editProduct";
+        return "productlist";
     }
     String uploadFileHandler(@RequestParam("name") String name,
                              @RequestParam("file") MultipartFile file) {

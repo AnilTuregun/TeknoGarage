@@ -66,7 +66,7 @@ public class CartController {
         return "cart";
     }
     @RequestMapping(value = {"/cart"})
-    public String showCart(Model model) {
+    public String showCart(Model model,HttpSession session) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         int total=0;
@@ -79,6 +79,7 @@ public class CartController {
         for(int i=0;i<shoppingCarts.size();i++){
            total+=shoppingCarts.get(i).getQuantity()*shoppingCarts.get(i).getProduct().getProductPrice();
         }
+        session.setAttribute("totalAmount",total);
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("shoppingCarts",shoppingCarts);
@@ -129,7 +130,6 @@ public class CartController {
         ordersEntity.setUserId(user);
         List<ShoppingCart> c=cartService.findCartByUser(username);
 OrderDetailsEntity orderDetailsEntity1 =orderDetailsEntity ;
-
    orderService.save(ordersEntity1);
 
         for (int i=0;i<c.size();i++){

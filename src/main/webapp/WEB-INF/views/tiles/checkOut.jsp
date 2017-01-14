@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td>Amount:</td>
-                <td><form:input path="orderAmount" /></td>
+                <td><form:label path="orderAmount" >${totalAmount}</form:label></td>
             </tr>
             <tr>
                 <td>E-mail:</td>

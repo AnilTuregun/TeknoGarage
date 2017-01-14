@@ -34,6 +34,7 @@
                         <label class="col-md-4 control-label" for="productName">Product Name:</label>
                         <div class="col-md-4">
                             <form:input path="productName" />
+                            <form:errors path="productName"></form:errors>
                         </div>
                     </div>
 
@@ -42,24 +43,28 @@
                     <label class="col-md-4 control-label" for="productPrice">Product Price </label>
                     <div class="col-md-4">
                         <form:input path="productPrice" />
+                        <form:errors path="productPrice"></form:errors>
                     </div>
                 </div>
                     <div class="form-group">
                     <label class="col-md-4 control-label" for="productPrice">Product Weight: </label>
                     <div class="col-md-4">
                         <form:input path="productWeight" />
+                        <form:errors path="productWeight"></form:errors>
                     </div>
                 </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="productPrice">Product Stock: </label>
                         <div class="col-md-4">
                             <form:input path="productStock" />
+                            <form:errors path="productStock"></form:errors>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="productPrice">Product Description </label>
                         <div class="col-md-4">
                             <form:textarea path="productLongDesc" />
+                            <form:errors path="productLongDesc"></form:errors>
                         </div>
                     </div>
                     <div class="col-lg-12 form-group">
@@ -69,12 +74,14 @@
                     </div>
                         <div class="col-sm-4">
                             <form:input type="file" path="productImage"/>
+                            <form:errors path="productImage"></form:errors>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="productPrice">Product Tags: </label>
                         <div class="col-md-4">
                             <form:input path="productTags" />
+                            <form:errors path="productTags"></form:errors>
                         </div>
                     </div>
 

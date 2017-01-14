@@ -62,6 +62,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductsEntity findBySkuNumber(String Sku) {
+        return productsRepository.findBySkuNumber(Sku);
+    }
+
+    @Override
     public List<ProductsEntity> findByNameOrderDesc(String name) {
         return productsRepository.findByNameOrderDesc(name);
     }

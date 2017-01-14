@@ -93,14 +93,7 @@
                         <h4 >${product.productPrice}</h4>
                     </div>
                     <div class="ratings">
-                        <p class="pull-right">15 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                        </p>
+                        <p class="pull-right"> Reviews</p>
                     </div>
                 </div>
             </div>

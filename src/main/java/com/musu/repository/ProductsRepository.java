@@ -19,6 +19,8 @@ public interface ProductsRepository extends JpaRepository<ProductsEntity, Long>{
 
     @Query("select p from ProductsEntity p where p.productName = ?1")
     ProductsEntity findByName(String name);
+    @Query("select p from ProductsEntity p where p.productSku = ?1")
+    ProductsEntity findBySkuNumber(String sku);
 
     @Query("select p from ProductsEntity p where p.productTags like LOWER(CONCAT('%',:tags, '%')) ORDER BY p.productPrice desc")
     List<ProductsEntity> findByNameOrderDesc(@Param("tags")String name);
