@@ -11,6 +11,7 @@ import java.util.List;
 public interface SliderService {
     void save (Slider slider);
     List<Slider> findActiveSlider();
-
-
+    Slider findSliderById(int id);
+    List<Slider> findAll();
+    void deleteSlider(int id);
 }

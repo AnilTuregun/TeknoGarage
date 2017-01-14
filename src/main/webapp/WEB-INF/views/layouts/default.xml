@@ -128,6 +128,10 @@
 		<put-attribute name="title" value="Product List"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/tiles/orderDetails.jsp"></put-attribute>
 	</definition>
+	<definition name="slider" extends="musu.admintemp">
+		<put-attribute name="title" value="Slider List"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/adminTiles/slider.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
 
 

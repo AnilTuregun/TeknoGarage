@@ -14,14 +14,19 @@ public class SliderServiceImpl implements SliderService {
 
     @Autowired
     private SliderRepository sliderRepository;
-
+    @Override
+    public  Slider findSliderById(int id){return sliderRepository.findSliderById(id);}
     @Override
     public void save(Slider slider) {
         sliderRepository.save(slider);
     }
-
+    @Override
+    public   List<Slider> findAll(){ return sliderRepository.findAll();}
     @Override
     public List<Slider> findActiveSlider() {
       return   sliderRepository.findActiveSliders();
     }
+
+    @Override
+    public void deleteSlider(int id){sliderRepository.deleteSlider(id);}
 }

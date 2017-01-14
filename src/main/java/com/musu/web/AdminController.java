@@ -36,6 +36,9 @@ public class AdminController {
     private OrderService orderService;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SliderService sliderService;
     @Autowired
     private UserRepository userRepository;
     private int productId;
@@ -145,6 +148,30 @@ public class AdminController {
 
         return "editProduct";
     }
+    @RequestMapping(value = "/adminpanel/slider",method = RequestMethod.GET)
+    public String showSlider(Model model){
+
+            List<Slider> sliderList =sliderService.findAll();
+                model.addAttribute("sliders",sliderList);
+        return "slider";
+    }
+    @RequestMapping(value = "/adminpanel/deleteslider/{SliderId}")
+    public String deleteSlider(@PathVariable("SliderId")int id,Model model ){
+
+        sliderService.deleteSlider(id);
+        List<Slider> sliderList =sliderService.findAll();
+        model.addAttribute("sliders",sliderList);
+            return  "redirect:/adminpanel/slider";
+    }
+    @RequestMapping(value = "/adminpanel/addslider",method = RequestMethod.POST)
+    public String addSlider(@ModelAttribute("sliderForm") Slider slider){
+
+        sliderService.save(slider);
+        return "redirect:/adminpanel/slider";
+    }
+
+
+
     String uploadFileHandler(@RequestParam("name") String name,
                              @RequestParam("file") MultipartFile file) {
 

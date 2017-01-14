@@ -127,6 +127,7 @@ public class CartController {
         User user=userService.findByUsername(username);
     OrdersEntity ordersEntity1=ordersEntity;
         ordersEntity.setUserId(user);
+
         List<ShoppingCart> c=cartService.findCartByUser(username);
 OrderDetailsEntity orderDetailsEntity1 =orderDetailsEntity ;
 
