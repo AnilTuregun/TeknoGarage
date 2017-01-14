@@ -93,8 +93,7 @@
                         <h4 >${product.productPrice}</h4>
                     </div>
                     <div class="ratings">
-                        <p class="pull-right"> reviews</p>
-
+                        <p class="pull-right"> Reviews</p>
                     </div>
                 </div>
             </div>

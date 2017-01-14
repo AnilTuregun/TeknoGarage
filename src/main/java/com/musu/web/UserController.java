@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,7 +37,8 @@ public class UserController {
     private ProductService productService;
     @Autowired
     private SecurityService securityService;
-
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private UserValidator userValidator;
 
@@ -97,12 +99,24 @@ public class UserController {
         } else {
             username = principal.toString();
         }
-      User user =userService.findByUsername(username);
-        Set<OrdersEntity> ordersEntities=user.getOrdersEntities();
+        User user =userService.findByUsername(username);
         model.addAttribute("user",user);
         return "account";
     }
+    @RequestMapping(value = "/account", method = RequestMethod.POST)
+    public String accountEdit(@ModelAttribute("userForm")User user,Model model, BindingResult result) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        int total=0;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+       userService.save(user);
 
+        return "home";
+    }
 
 
 }

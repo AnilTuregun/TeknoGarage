@@ -24,10 +24,10 @@
         </div>
 
         <div class="search-box">
-            <form method="GET" action="${contextPath}/searchProduct" class="form-signin">
+        <form method="GET" action="${contextPath}/searchProduct" class="form-signin">
             <input type="text" class="search-query form-control" placeholder="Search" name="searchProduct" />
-            </form>
-        </div>
+        </form>
+    </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

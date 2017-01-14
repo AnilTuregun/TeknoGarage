@@ -23,7 +23,6 @@
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">${shoppingCart.product.productName}</a></h4>
 
-                                <span>Status: </span><span class="text-success"><strong>In Stock=${shoppingCart.product.productStock}</strong></span>
                             </div>
                         </div></td>
                     <td class="col-sm-1 col-md-1" style="text-align: center">

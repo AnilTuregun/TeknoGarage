@@ -12,7 +12,19 @@
         </div>
 
     </div>
-
+    <div>
+        <div class="col-lg-6">
+            <div class="span12">
+                <a href="/sortProductDesc" role="button" data-toggle="modal" class="btn btn-warning">Sort Desc Price</a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="span12">
+                <a href="/sortProductAsc" role="button" data-toggle="modal" class="btn btn-warning">Sort Asc Price</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6"></div><div class="col-lg-6"></div>
     <div class="row">
 
 

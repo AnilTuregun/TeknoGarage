@@ -192,14 +192,8 @@
         <img src="/resources/image/logo.png" alt="" />
 
         <p class="footer-links">
-            <a href="#">Home</a>
-            |
+            <a href="home">Home</a>
 
-            <a href="#">About</a>
-            |
-            <a href="#">Faq</a>
-            |
-            <a href="#">Contact</a>
         </p>
 
         <p class="footer-company-name">TeknoMarket &copy; 2017</p>
@@ -209,7 +203,7 @@
 
         <div>
             <i class="fa fa-map-marker"></i>
-            <p><span>21 Revolution Street</span> Paris, France</p>
+            <p><span>Unalan Street</span> Istanbul, Turkey</p>
         </div>
 
         <div>
@@ -219,7 +213,7 @@
 
         <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:support@company.com">support@company.com</a></p>
+            <p><a href="mailto:musu@company.com">musu@company.com</a></p>
         </div>
 
     </div>
@@ -228,7 +222,7 @@
 
         <p class="footer-company-about">
             <span>About the company</span>
-            Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            TeknoMarket is the first E-commerce project.
         </p>
 
         <div class="footer-icons">

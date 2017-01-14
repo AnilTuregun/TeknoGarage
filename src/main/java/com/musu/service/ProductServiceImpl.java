@@ -5,6 +5,7 @@ import com.musu.model.ProductsEntity;
 import com.musu.repository.ProductsRepository;
 import com.musu.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    private Sort sortByIdAsc() {
+        return new Sort(Sort.Direction.ASC, "productPrice");
+    }
 
     @Override
     public void save(ProductsEntity product) {
@@ -32,6 +36,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductsEntity> findAllDesc() {
+        return productsRepository.findAllDesc();
+    }
+
+    @Override
     public List<ProductsEntity> findByCateogoryId(int id) {
         return productsRepository.findByProductsByProductCategoryId(id);
     }
@@ -39,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductsEntity> findByCateogoryName(String name) {
         return productsRepository.findByCateogoryName(name);
+
     }
 
     @Override
@@ -49,6 +59,21 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductsEntity findByName(String name) {
         return  productsRepository.findByName(name);
+    }
+
+    @Override
+    public ProductsEntity findBySkuNumber(String Sku) {
+        return productsRepository.findBySkuNumber(Sku);
+    }
+
+    @Override
+    public List<ProductsEntity> findByNameOrderDesc(String name) {
+        return productsRepository.findByNameOrderDesc(name);
+    }
+
+    @Override
+    public List<ProductsEntity> findByNameOrderAsc(String name) {
+        return productsRepository.findByNameOrderAsc(name);
     }
 
     @Override

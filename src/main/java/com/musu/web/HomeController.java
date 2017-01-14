@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -29,12 +30,16 @@ public class HomeController {
     @Autowired
     private OrderService orderService;
     @Autowired
+    private ReviewService reviewService;
+    @Autowired
     private OrderDetailsService orderDetailsService;
 
     @RequestMapping(value = {"/home"})
     public String showhome(Model model,HttpSession session) {
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         List<ProductsEntity> productEntitiyList = productService.findAll();
+        ProductsEntity productsEntity=productService.findByName("Acer Chromebook");
+        Set<Reviews> reviewsList=productsEntity.getReviews();
         List<ShoppingCart> shoppingCart=cartService.findAll();
         List<Slider> sliderList= sliderService.findActiveSlider();
         model.addAttribute("category",productCategoryEntitiyList);

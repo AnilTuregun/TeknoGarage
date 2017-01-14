@@ -66,7 +66,7 @@ public class CartController {
         return "cart";
     }
     @RequestMapping(value = {"/cart"})
-    public String showCart(Model model) {
+    public String showCart(Model model,HttpSession session) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         int total=0;
@@ -79,6 +79,7 @@ public class CartController {
         for(int i=0;i<shoppingCarts.size();i++){
            total+=shoppingCarts.get(i).getQuantity()*shoppingCarts.get(i).getProduct().getProductPrice();
         }
+        session.setAttribute("totalAmount",total);
         List<ProductcategoriesEntity> productCategoryEntitiyList = categoryService.findAll();
         model.addAttribute("category",productCategoryEntitiyList);
         model.addAttribute("shoppingCarts",shoppingCarts);
@@ -130,18 +131,15 @@ public class CartController {
 
         List<ShoppingCart> c=cartService.findCartByUser(username);
 OrderDetailsEntity orderDetailsEntity1 =orderDetailsEntity ;
+   orderService.save(ordersEntity1);
 
-   orderService.saveAndFlush(ordersEntity1);
-
-        for (ShoppingCart aC : c) {
-
+        for (int i=0;i<c.size();i++){
             orderDetailsEntity1.setOrdersEntity(ordersEntity1);
-
-            orderDetailsEntity1.setProductsEntity(aC.getProduct());
-            orderDetailsEntity1.setDetailName(aC.getProduct().getProductName());
-            orderDetailsEntity1.setDetailQuantity(aC.getQuantity());
-            orderDetailsEntity1.setDetailPrice(aC.getProduct().getProductPrice());
-            orderDetailsEntity1.setDetailSku(aC.getProduct().getProductSku());
+            orderDetailsEntity1.setProductsEntity(c.get(i).getProduct());
+            orderDetailsEntity1.setDetailName(c.get(i).getProduct().getProductName());
+            orderDetailsEntity1.setDetailQuantity(c.get(i).getQuantity());
+            orderDetailsEntity1.setDetailPrice(c.get(i).getProduct().getProductPrice());
+            orderDetailsEntity1.setDetailSku(c.get(i).getProduct().getProductSku());
             orderDetailsService.save(orderDetailsEntity1);
         }
 
