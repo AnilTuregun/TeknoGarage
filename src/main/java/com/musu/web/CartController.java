@@ -30,7 +30,7 @@ public class CartController {
     private ProductService productService;
 
     @RequestMapping(value = {"/cart/{product}"})
-    public String showhome(Model model, @PathVariable("product")String productname, HttpSession session) {
+    public String showCart(Model model, @PathVariable("product")String productname, HttpSession session) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
 
@@ -66,7 +66,7 @@ public class CartController {
         return "cart";
     }
     @RequestMapping(value = {"/cart"})
-    public String showCart(Model model,HttpSession session) {
+    public String showCart1(Model model,HttpSession session) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         int total=0;

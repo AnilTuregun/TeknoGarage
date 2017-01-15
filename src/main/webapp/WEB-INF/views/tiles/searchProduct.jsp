@@ -42,14 +42,9 @@
                         <p>${product.productShortDesc}</p>
                     </div>
                     <div class="ratings">
-                        <p class="pull-right">15 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                        </p>
+                        <div class="ratings">
+                            <p class="pull-right">${product.reviews.size()} Reviews</p>
+                        </div>
                     </div>
                 </div>
             </div>

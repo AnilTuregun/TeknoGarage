@@ -20,14 +20,14 @@ public class User {
     private String userLastname;
     private String userCity;
     private String userState;
+    private String userAdress;
     private Integer userZip;
     private Byte userEmailVerified;
     private Timestamp userRegistrationDate;
     private Integer userVerificationCode;
     private Integer userPhone;
-
     private Set<OrdersEntity> ordersEntities;
-
+    private  Role role;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -108,7 +108,7 @@ public class User {
         this.shoppingCarts = shoppingCarts;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     public Set<Reviews> getReviews() {
         return reviews;
     }
@@ -166,6 +166,15 @@ public class User {
     public void setUserZip(Integer userZip) {
         this.userZip = userZip;
     }
+    @Basic
+    @Column(name = "userAdress")
+    public String getUserAdress() {
+        return userAdress;
+    }
+
+    public void setUserAdress(String userAdress) {
+        this.userAdress = userAdress;
+    }
 
     @Basic
     @Column(name = "userEmailVerified")
@@ -206,8 +215,15 @@ public class User {
     public void setUserPhone(Integer userPhone) {
         this.userPhone = userPhone;
     }
+    @ManyToOne
+    @JoinColumn(name = "r_id", referencedColumnName = "id", nullable = false)
+    public Role getRole() {
+        return role;
+    }
 
-
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     @Override
     public boolean equals(Object o) {

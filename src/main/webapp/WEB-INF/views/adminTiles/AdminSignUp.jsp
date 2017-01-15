@@ -30,7 +30,7 @@
 
 <div class="container">
 
-    <form:form method="POST" modelAttribute="userForm" class="form-signin">
+    <form:form action="/adminpanel/addAdmin" method="POST" modelAttribute="adminForm" class="form-signin">
         <h2 class="form-signin-heading">Create your account</h2>
         <spring:bind path="userFirstname">
             <div class="form-group ${status.error ? 'has-error' : ''}">

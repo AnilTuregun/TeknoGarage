@@ -1,5 +1,7 @@
 package com.musu.service;
 
+import javax.servlet.http.HttpSession;
+
 public interface SecurityService {
     String findLoggedInUsername();
 

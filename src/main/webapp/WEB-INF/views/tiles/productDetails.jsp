@@ -31,21 +31,14 @@
     </div>
 
     <div class="col-md-7">
-        <div class="product-title">${product.productShortDesc}</div>
-        <div class="product-desc">${product.productLongDesc}</div>
-        <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
+        <div class="product-title">Product Name:${product.productName}</div>
         <hr>
-        <div class="product-price">${product.productPrice}</div>
-        <div class="product-stock">${product.productStock}</div>
+        <div class="product-price">Product Price:${product.productPrice}</div>
+        <div class="product-stock">Stock:${product.productStock}</div>
         <hr>
         <div class="btn-group cart">
             <button type="button" class="btn btn-success">
                 <a href="${contextPath}/cart/${product.productName}">Add to cart</a>
-            </button>
-        </div>
-        <div class="btn-group wishlist">
-            <button type="button" class="btn btn-danger">
-                Add to wishlist
             </button>
         </div>
 
@@ -91,11 +84,11 @@
 
             </div>
             <div class="tab-pane fade" id="service-three">
+                <h1><small class="pull-right">${reviews.size()} comments</small> Comments </h1>
                 <c:forEach var="review" items="${reviews}">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="page-header">
-                                <h1><small class="pull-right">${reviews.size()} comments</small> Comments </h1>
                             </div>
                             <div class="comments-list">
                                 <div class="media">

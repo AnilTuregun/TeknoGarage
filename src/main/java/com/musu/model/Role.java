@@ -9,6 +9,7 @@ public class Role {
     private Long id;
     private String name;
     private Set<User> users;
+    private Set<User> userSet;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,12 +29,21 @@ public class Role {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
     public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    public Set<User> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
     }
 }

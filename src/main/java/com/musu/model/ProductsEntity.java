@@ -180,7 +180,7 @@ public class ProductsEntity {
         this.shoppingCarts = shoppingCarts;
     }
 
-    @OneToMany(mappedBy = "productsEntity", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "productsEntity", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     public Set<Reviews> getReviews() {
         return reviews;
     }

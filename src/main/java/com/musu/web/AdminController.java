@@ -6,6 +6,7 @@ import com.musu.repository.UserRepository;
 import com.musu.service.*;
 import com.musu.validator.ProductEditValidator;
 import com.musu.validator.ProductValidator;
+import com.musu.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -47,11 +48,15 @@ public class AdminController {
     private ProductValidator productValidator;
     @Autowired
     private ProductEditValidator productEditValidator;
+    @Autowired
+    private UserValidator userValidator;
+    @Autowired
+    private RoleService roleService;
     private int productId;
 
 
     @RequestMapping(value = {"/adminpanel/productlist"},method = RequestMethod.GET)
-    public String showProduct(Model model,HttpSession session) {
+    public String showProductList(Model model,HttpSession session) {
         List<ProductsEntity> productEntityList = productService.findAll();
         model.addAttribute("products",productEntityList);
         return "productlist";
@@ -215,36 +220,23 @@ public class AdminController {
         return "addslider";
     }
 
+    @RequestMapping(value = {"/adminpanel/addAdmin"},method = RequestMethod.GET)
+    public String ShowaddAdmin(Model model,HttpSession session) {
+        model.addAttribute("adminForm", new User());
+        return "AdminSignUp";
+    }
+    @RequestMapping(value = {"/adminpanel/addAdmin"},method = RequestMethod.POST)
+    public String addAdmin(@ModelAttribute("adminForm") User userForm, BindingResult bindingResult, Model model,HttpSession session) {
 
+        userValidator.validate(userForm, bindingResult);
 
-    String uploadFileHandler(@RequestParam("name") String name,
-                             @RequestParam("file") MultipartFile file) {
-
-        if (!file.isEmpty()) {
-            try {
-                byte[] bytes = file.getBytes();
-
-                // Creating the directory to store file
-                String rootPath = System.getProperty("catalina.home");
-                File dir = new File(rootPath + File.separator + "tmpFiles");
-
-
-                // Create the file on server
-                File serverFile = new File(dir.getAbsolutePath()
-                        + File.separator + name);
-                BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream(serverFile));
-                stream.write(bytes);
-                stream.close();
-
-
-                return "You successfully uploaded file=" + name;
-            } catch (Exception e) {
-                return "You failed to upload " + name + " => " + e.getMessage();
-            }
-        } else {
-            return "You failed to upload " + name
-                    + " because the file was empty.";
+        if (bindingResult.hasErrors()) {
+            return "signUp";
         }
-}
+        Role role =roleService.findRoleByName("ROLE_ADMIN");
+        userForm.setRole(role);
+        userService.save(userForm);
+        return "adminpanel";
+    }
+
 }

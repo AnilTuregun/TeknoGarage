@@ -2,10 +2,7 @@ package com.musu.web;
 
 import com.musu.model.*;
 import com.musu.repository.ProductcategoriesRepository;
-import com.musu.service.CategoryService;
-import com.musu.service.ProductService;
-import com.musu.service.SecurityService;
-import com.musu.service.UserService;
+import com.musu.service.*;
 import com.musu.validator.UserValidator;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +26,8 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
+    private RoleService roleService;
+    @Autowired
     private CategoryService categoryService;
     @Autowired
     private ProductService productService;
@@ -41,6 +37,12 @@ public class UserController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private UserValidator userValidator;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private ReviewService reviewService;
+    @Autowired
+    private OrderDetailsService orderDetailsService;
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -50,13 +52,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model,HttpSession session) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "signUp";
         }
-
+        Role role =roleService.findRoleByName("ROLE_USER");
+        userForm.setRole(role);
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
@@ -73,7 +76,6 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
         return "login";
     }
-
 
     @RequestMapping(value = {"/userlist"})
     public String showUserlist(Model model) {
@@ -117,6 +119,33 @@ public class UserController {
 
         return "home";
     }
+    @RequestMapping(value = {"/myOrders"})
+    public String showOrders (Model model,HttpSession session){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
 
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+
+        List<OrdersEntity> ordersEntities=orderService.findOrdersbyUsername(username);
+        model.addAttribute("orders",ordersEntities);
+
+
+
+
+        return "myorders";
+    }
+    @RequestMapping(value = {"/myOrders/{OrderID}"})
+    public  String showOrderDetails (@PathVariable("OrderID") int orderID,Model model){
+
+        List<OrderDetailsEntity> orderDetailsEntities=orderDetailsService.findDetailsbyOrderID(orderID);
+        model.addAttribute("orderDetails",orderDetailsEntities);
+
+        return "orderdetails";
+    }
 
 }

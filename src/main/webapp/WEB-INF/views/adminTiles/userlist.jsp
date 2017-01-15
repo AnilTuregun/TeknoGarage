@@ -19,7 +19,7 @@
                 <th>User First Name:</th>
                 <th>User Last Name:</th>
                 <th>User Email:</th>
-                <th>User City:</th>
+                <th>User Status</th>
                 <th>User Phone:</th>
                 <th class="text-center">Action</th>
             </tr>
@@ -31,7 +31,7 @@
                 <td>${user.userFirstname}</td>
                 <td>${user.userLastname}</td>
                 <td>${user.email}</td>
-                <td>${user.userCity}</td>
+                <td>${user.role.name}</td>
                 <td>${user.userPhone}</td>
                 <td class="text-center"><a href="/deleteUser/${user.username}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
             </tr>

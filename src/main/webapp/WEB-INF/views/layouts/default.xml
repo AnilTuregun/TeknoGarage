@@ -46,8 +46,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/tiles/login.jsp"></put-attribute>
 	</definition>
 	<definition name="signUp" extends="musu.base">
+	<put-attribute name="title" value="Login Deneme"></put-attribute>
+	<put-attribute name="content" value="/WEB-INF/views/tiles/signUp.jsp"></put-attribute>
+</definition>
+	<definition name="AdminSignUp" extends="musu.base">
 		<put-attribute name="title" value="Login Deneme"></put-attribute>
-		<put-attribute name="content" value="/WEB-INF/views/tiles/signUp.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/adminTiles/AdminSignUp.jsp"></put-attribute>
 	</definition>
 	<definition name="welcome" extends="musu.default">
 	<put-attribute name="title" value="Login Deneme"></put-attribute>

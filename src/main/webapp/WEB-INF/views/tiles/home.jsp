@@ -93,7 +93,8 @@
                         <h4 >${product.productPrice}</h4>
                     </div>
                     <div class="ratings">
-                        <p class="pull-right"> Reviews</p>
+                        <p class="pull-right">${product.reviews.size()} Reviews</p>
+
                     </div>
                 </div>
             </div>

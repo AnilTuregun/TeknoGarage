@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<!DOCTYPE html>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -63,43 +66,9 @@
         </div>
     </div>
 </div>
+
+<!-- jQuery -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 
+<!-- Bootstrap Core JavaScript -->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-
-<script>
-  $(document).ready(function () {
-      console.log("sdfaa");
-     /*UpdateSubtotal();*/
-      console.log("sdfaa");
-      Total();
-      console.log("fafaaaaaaaf");
-  });
-    function UpdateSubtotal() {
-      /*  $('.productRow').each(function (index) {
-            var quantity=$(this).find('input#productQuantity').text();
-            var price=$(this).find('td#productPrice').text();
-            console.log("sdf");
-            console.log(quantity);
-            console.log("sdf");
-            console.log(price);
-            console.log("aaaaaaaaaaaaa");
-
-            $(this).find('td#subTotal').text(quantity);
-
-
-        });*/
-    }
-    function Total() {
-        var total=0;
-        $('#subTotal').each(function (index) {
-,
-        total +=parseInt( $('#subTotal').index(index).text());
-
-
-
-        });
-        $(this).find('#total').text(total);
-        alert(total);
-    }
-</script>
