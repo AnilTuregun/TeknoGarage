@@ -10,20 +10,32 @@
 <div align="center">
 
     <c:forEach var="order" items="${orders}">
-    <div align="center" class="order-container" style="max-width:800px ;min-height: 200px; padding:10px 10px 10px 10px" >
+    <div align="center" class="order-container" style="    max-width: 800px;
+    min-height: 200px;
+    background-color: rgb(236, 244, 249);
+    border-left: 6px solid #4e9caf;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 7px;" >
 
 
         <div align="left" class="address-price" style="float:left ; max-width:200px ">
 
-            Order Date:${order.orderDate}<br>
-            Oder No:${order.orderId} <br>
-            To: Mustafa Ortayol<br>
-            Address: Nuripaşa Mah 64-4  <br>
-            Amount:143,92 TL
+            <strong>   Order Date:</strong>${order.orderDate}<br>
+            <strong>Order No:</strong>${order.orderId} <br>
+            <strong> To:</strong>${order.orderShipName}<br>
+            <strong>Address:</strong> ${order.orderShipAddress}  <br>
+            <strong> Amount:</strong>${order.orderAmount}
 
 
         </div>
-        Lumberjack 6W Eagle Hı Erkek Bot A3373352
+        <ul style="list-style-type:disc">
+        <c:forEach var="orderdetail" items="${orderdetails}">
+          <c:if test="${order.orderId}=${orderdetail.ordersEntity.orderId}">
+            <li>${orderdetail.detailName}</li>
+          </c:if>
+        </c:forEach>
+        </ul>
 
 
         <div align="right" class="order-detail" style="float:right ; max-width:200px ">
@@ -31,8 +43,8 @@
 
             <a style=" display: block;
     width: 85px;
-    height: 25px;
-    background: #4E9CAF;
+
+ background: #4E9CAF;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
@@ -45,7 +57,7 @@
 
 
         </c:forEach>
-    </table>
+
 
 
 

@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -81,8 +82,14 @@ public class HomeController {
                 username = principal.toString();
             }
             User user=userService.findByUsername(username);
-
+            List<OrderDetailsEntity> orderDetailsEntities=new ArrayList<OrderDetailsEntity>() ;
             List<OrdersEntity> ordersEntities=orderService.findOrdersbyUsername(username);
+            for (int i =0;i<ordersEntities.size();i++) {
+             orderDetailsEntities= orderDetailsService.findDetailsbyOrderID(ordersEntities.get(i).getOrderId());
+
+            }
+
+            model.addAttribute("orderdetails",orderDetailsEntities);
             model.addAttribute("orders",ordersEntities);
 
 
