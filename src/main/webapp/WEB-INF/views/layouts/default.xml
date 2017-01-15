@@ -132,6 +132,10 @@
 		<put-attribute name="title" value="Slider List"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/adminTiles/slider.jsp"></put-attribute>
 	</definition>
+	<definition name="addslider" extends="musu.admintemp">
+		<put-attribute name="title" value="Slider List"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/adminTiles/addSlider.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
 
 

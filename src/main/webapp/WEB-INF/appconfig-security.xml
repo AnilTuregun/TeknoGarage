@@ -14,6 +14,7 @@
         <intercept-url pattern="/account" access="isAuthenticated()"/>
         <form-login login-page="/login" default-target-url="/home" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/loggedout" />
+        <csrf disabled="true"/>
     </http>
 
     <authentication-manager alias="authenticationManager">
