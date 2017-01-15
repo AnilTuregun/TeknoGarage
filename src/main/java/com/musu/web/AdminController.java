@@ -184,7 +184,8 @@ public class AdminController {
     }
     @RequestMapping(value = "/adminpanel/slider",method = RequestMethod.GET)
     public String showSlider(Model model){
-
+        Slider slider=new Slider();
+        model.addAttribute("slider",slider);
             List<Slider> sliderList =sliderService.findAll();
                 model.addAttribute("sliders",sliderList);
         return "slider";
@@ -198,10 +199,10 @@ public class AdminController {
             return  "redirect:/adminpanel/slider";
     }
     @RequestMapping(value = "/adminpanel/addslider",method = RequestMethod.POST)
-    public String addSlider(@ModelAttribute("sliderForm") Slider slider){
-
+    public String addSlider(@ModelAttribute("slider") Slider slider,Model model, BindingResult result){
+        model.addAttribute("sliderForm", new Slider());
         sliderService.save(slider);
-        return "redirect:/adminpanel/slider";
+        return "redirect:/adminpanel/addslider";
     }
 
 

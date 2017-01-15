@@ -1,4 +1,8 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
   User: Ortayol
@@ -47,15 +51,49 @@
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+                        <form:form action="/adminpanel/addSlider" method="POST" cssClass="form-horizontal" modelAttribute="slider">
+                            <div class="form-group">
+                                <legend>Product Request</legend>
 
+
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="productsEntity.productId">Select Product Categori </label>
+                                    <div class="col-md-4">
+                                        <form:input  path="productsEntity.productId"/>
+
+                                         </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="SliderImage">Product SKU:</label>
+                                    <div class="col-md-4">
+                                        <form:input path="SliderImage" />
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="Active">Product Name:</label>
+                                    <div class="col-md-4">
+                                        <form:input path="Active" />
+
+                                    </div>
+                                </div>
+
+
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="saveBtn"></label>
+                                <div class="col-md-8">
+                                    <button id="saveBtn" type="submit" name="button1id" class="btn btn-success">Save</button>
+                                    <button id="cancelBtn" name="button2id" class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                </div>    </form:form>
+                    </div>
             </div>
         </div>
 
     </div>
+</div>
 </div>
