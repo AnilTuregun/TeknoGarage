@@ -25,7 +25,7 @@ public class User {
     private Timestamp userRegistrationDate;
     private Integer userVerificationCode;
     private Integer userPhone;
-    private String userAdress;
+
     private Set<OrdersEntity> ordersEntities;
 
     @Id
@@ -207,15 +207,7 @@ public class User {
         this.userPhone = userPhone;
     }
 
-    @Basic
-    @Column(name = "userAdress")
-    public String getUserAdress() {
-        return userAdress;
-    }
 
-    public void setUserAdress(String userAdress) {
-        this.userAdress = userAdress;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -241,7 +233,6 @@ public class User {
         if (userVerificationCode != null ? !userVerificationCode.equals(user.userVerificationCode) : user.userVerificationCode != null)
             return false;
         if (userPhone != null ? !userPhone.equals(user.userPhone) : user.userPhone != null) return false;
-        if (userAdress != null ? !userAdress.equals(user.userAdress) : user.userAdress != null) return false;
 
         return true;
     }
