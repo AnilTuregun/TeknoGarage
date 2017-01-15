@@ -71,39 +71,6 @@ public class HomeController {
         model.addAttribute("sliders",sliderList );
         return "home";
     }
-        @RequestMapping(value = {"/myOrders"})
-    public String showOrders (Model model,HttpSession session){
-            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            String username;
 
-            if (principal instanceof UserDetails) {
-                username = ((UserDetails)principal).getUsername();
-            } else {
-                username = principal.toString();
-            }
-            User user=userService.findByUsername(username);
-            List<OrderDetailsEntity> orderDetailsEntities=new ArrayList<OrderDetailsEntity>() ;
-            List<OrdersEntity> ordersEntities=orderService.findOrdersbyUsername(username);
-            for (int i =0;i<ordersEntities.size();i++) {
-             orderDetailsEntities= orderDetailsService.findDetailsbyOrderID(ordersEntities.get(i).getOrderId());
-
-            }
-
-            model.addAttribute("orderdetails",orderDetailsEntities);
-            model.addAttribute("orders",ordersEntities);
-
-
-
-
-            return "myorders";
-        }
-    @RequestMapping(value = {"/myOrders/{OrderID}"})
-        public  String showOrderDetails (@PathVariable("OrderID") int orderID,Model model){
-
-            List<OrderDetailsEntity> orderDetailsEntities=orderDetailsService.findDetailsbyOrderID(orderID);
-            model.addAttribute("orderDetails",orderDetailsEntities);
-
-            return "orderdetails";
-        }
     }
 
